@@ -257,7 +257,16 @@ my-media-library/
   Develop a robust and intuitive user interface for managing series, episodes, subtitles, and file movements.
 
   **Tasks:**  
-  - **Create High-Level Pages**
+- **Create Design System with Theme**
+    - Create a theme system with light/dark mode support.  
+    - Define color tokens, spacing, and typography rules.  
+    - Build reusable components:  
+      - Button  
+      - Modal  
+      - Card  
+    - Ensure consistent styling with Tailwind.  
+
+- **Create High-Level Pages**
     - Create high-level pages:  
       - Dashboard  
       - Series  
@@ -265,16 +274,42 @@ my-media-library/
       - Settings  
       - Manage Paths  
       - Scanner  
-    - Finalize the structure after initial testing and feedback.
+    - Finalize the structure after initial testing and feedback.  
 
-  - **Create Shared Components**
-    - Create reusable Button, Modal, and Card components.  
-    - Keep consistent design across the UI using Tailwind.  
-
-  - **State Management**
+- **State Management**
     - Use React Context for shared state.  
     - Store fetched series data in state using SWR.  
     - Allow real-time state updates.  
+
+- **Global Error Boundary**
+    - Create a React ErrorBoundary component.  
+    - Display fallback UI when errors occur.  
+    - Log errors for debugging.  
+
+- **Store Dark/Light Mode in Local Storage**
+    - Store user preference in local storage.  
+    - Ensure persistence across sessions.  
+    - Reflect mode changes dynamically.  
+
+- **Define Component Structure**
+    - Create `components/` directory.  
+    - Organize UI components logically.  
+    - Create hooks for shared logic.  
+
+- **Ensure Accessibility (a11y) Compliance**
+    - Follow WCAG color contrast guidelines.  
+    - Add ARIA roles for dynamic content.  
+    - Implement focus state handling.  
+
+- **Add Metadata & SEO Handling**
+    - Create `next/head` defaults for metadata.  
+    - Add OpenGraph metadata for social sharing.  
+    - Ensure dynamic metadata updates.  
+
+- **Create Global Loading State**
+    - Create a loading spinner component.  
+    - Handle loading state globally.  
+    - Reflect loading status in UI.          
 
   **Status:**  
   ⏳ Planned  
