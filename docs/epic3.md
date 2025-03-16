@@ -4,12 +4,27 @@
 Develop a robust and intuitive user interface for managing series, episodes, subtitles, and file movements.
 
 ## ✅ Tasks  
-- Create high-level pages (Dashboard, Series, Episode, Settings, Manage Paths, Scanner).  
-- Create reusable components (e.g., Button, Modal, Card).  
-- Implement global state management using React Context and SWR.  
+- **Create High-Level Pages**
+    - Create high-level pages:  
+        - Dashboard  
+        - Series  
+        - Episode  
+        - Settings  
+        - Manage Paths  
+        - Scanner  
+    - Finalize the structure after initial testing and feedback.
+
+- **Create Shared Components**
+    - Create reusable Button, Modal, and Card components.  
+    - Keep consistent design across the UI using Tailwind.  
+
+- **State Management**
+    - Use React Context for shared state.  
+    - Store fetched series data in state using SWR.  
+    - Allow real-time state updates.  
 
 ## 🏆 Status  
 ⏳ Planned  
 
 ## 📝 Notes  
-This epic focuses on creating a clean and consistent user interface.
+This epic focuses on ensuring the frontend is modular, consistent, and scalable.

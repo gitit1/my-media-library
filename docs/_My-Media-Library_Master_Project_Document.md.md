@@ -223,26 +223,26 @@ my-media-library/
   Ensure that all project documentation is comprehensive, up-to-date, and well-organized. 
 
   **Tasks:**  
-  - **Review & Update Master Project Document** → Closes #1  
+  - **Review & Update Master Project Document**
     - Compare current content with recent changes.  
     - Update sections to reflect new scanning logic, manual data input, and integration points.  
     - Ensure that the epics and milestones are correctly documented.  
 
-  - **Enhance the README** → Closes #2  
+  - **Enhance the README**
     - Provide a clear project overview.  
     - Include setup instructions (dependencies, environment variables, running client/server).  
     - Summarize basic usage (e.g., adding a series, scanning vs. manual input).  
 
-  - **Create/Update the `/docs` Folder** → Closes #3  
+  - **Create/Update the `/docs` Folder**
     - Add subsystem-specific documentation (e.g., `docs/thetvdb.md`, `docs/plex.md`, `docs/opensubtitles.md`, `docs/filesystem.md`, `docs/env-variables.md`).  
     - Create epic-specific docs (e.g., `docs/epic1.md`, `docs/epic2.md`, etc.) detailing the goals, tasks, and status for each epic.  
 
-  - **Create High-Level Architecture Diagrams** → Closes #4  
+  - **Create High-Level Architecture Diagrams**
     - Create a sequence diagram showing the flow of data (frontend ↔ backend ↔ Plex ↔ TVDB ↔ filesystem).  
     - Include a data flowchart to visualize series input, subtitle fetching, and syncing.  
 
 
-  - **Document Git Workflow** → Closes #5  
+  - **Document Git Workflow**
     - Explain how to link issues to commits (e.g., using “Closes #X” in commit messages).  
     - Detail the process for maintaining a clean Git history.  
 
@@ -257,7 +257,7 @@ my-media-library/
   Develop a robust and intuitive user interface for managing series, episodes, subtitles, and file movements.
 
   **Tasks:**  
-  - **Create High-Level Pages** → Closes #14  
+  - **Create High-Level Pages**
     - Create high-level pages:  
       - Dashboard  
       - Series  
@@ -267,11 +267,11 @@ my-media-library/
       - Scanner  
     - Finalize the structure after initial testing and feedback.
 
-  - **Create Shared Components** → Closes #12  
+  - **Create Shared Components**
     - Create reusable Button, Modal, and Card components.  
     - Keep consistent design across the UI using Tailwind.  
 
-  - **State Management** → Closes #13  
+  - **State Management**
     - Use React Context for shared state.  
     - Store fetched series data in state using SWR.  
     - Allow real-time state updates.  
@@ -290,7 +290,7 @@ my-media-library/
   Prepare the foundation for storing series and metadata by setting up the database and TVDB connection.
 
   **Tasks:**  
-  - **Define Database Schema** → Closes #15  
+  - **Define Database Schema**
     - Design tables for Series, Season, and Episode.  
     - Include fields for:  
       - Series status  
@@ -298,19 +298,19 @@ my-media-library/
       - Plex integration status  
       - File path  
 
-  - **Create Database Models** → Closes #16  
+  - **Create Database Models**
     - Create TypeORM (or equivalent) models for Series, Season, and Episode.  
     - Establish relationships between models (e.g., Series → Season → Episode).  
 
-  - **Set Up TVDB API Integration** → Closes #17  
+  - **Set Up TVDB API Integration**
     - Create backend service to connect to TheTVDB API.  
     - Handle authentication and token refresh.  
 
-  - **Create TVDB Search Endpoint** → Closes #18  
+  - **Create TVDB Search Endpoint**
     - Create a backend route to search for series using TheTVDB.  
     - Return a list of possible matches to the client.  
 
-  - **Handle TVDB Conflicts** → Closes #19  
+  - **Handle TVDB Conflicts**
     - Handle cases where the series already exists in the database.  
     - Support linking mismatched data.  
 
@@ -328,27 +328,27 @@ my-media-library/
   Allow the user to define, modify, and manage filesystem paths for series storage and scanning.
 
   **Tasks:**  
-  - **(Client) Create UI for Managing Paths** → Closes #22  
+  - **(Client) Create UI for Managing Paths**
     - Create UI for adding and modifying filesystem paths.  
     - Display list of existing paths.  
 
-  - **(Server) Create Paths Table** → Closes #23  
+  - **(Server) Create Paths Table**
     - Create a table for storing paths in the database.  
     - Include fields for path type (e.g., Series, Movies).  
 
-  - **(Server) Add New Path** → Closes #24  
+  - **(Server) Add New Path**
     - Create backend route to add a new path.  
     - Validate path existence on filesystem.  
 
-  - **(Server) Modify Path** → Closes #25  
+  - **(Server) Modify Path**
     - Create backend route to modify an existing path.  
     - Allow changing path type.  
 
-  - **(Server) Delete Path** → Closes #26  
+  - **(Server) Delete Path**
     - Create backend route to delete a path.  
     - Clean up references to deleted paths.  
 
-  - **(Client) Handle Path Status** → Closes #27  
+  - **(Client) Handle Path Status**
     - Allow user to enable/disable specific paths.  
     - Display status (active/inactive).  
 
@@ -366,27 +366,27 @@ my-media-library/
   Allow users to manually enter and manage series data and store it in the database.
 
   **Tasks:**  
-  - **(Client) Create Series Search UI** → Closes #28  
+  - **(Client) Create Series Search UI**
     - Create search field to look up series using TheTVDB.  
     - Display possible matches and allow the user to confirm a match.  
 
-  - **(Server) Handle Series Search with TheTVDB** → Closes #29  
+  - **(Server) Handle Series Search with TheTVDB**
     - Create backend route to search TheTVDB using user input.  
     - Return a list of possible matches to the client.  
 
-  - **(Client) Ask for Filesystem Location** → Closes #30  
+  - **(Client) Ask for Filesystem Location**
     - After confirming a match → Prompt the user to select the filesystem location.  
     - Save the selected path.  
 
-  - **(Server) Save Metadata to Database** → Closes #31  
+  - **(Server) Save Metadata to Database**
     - Save full metadata (series, seasons, and episodes) to the database after confirmation.  
     - Handle conflicts if series already exists.  
 
-  - **(Client) Trigger Filesystem Scan** → Closes #32  
+  - **(Client) Trigger Filesystem Scan**
     - After saving metadata → Trigger filesystem scan for missing episodes.  
     - Display scan status to the user.  
 
-  - **(Client) Ask if Linked to Plex** → Closes #33  
+  - **(Client) Ask if Linked to Plex**
     - After saving metadata → Ask the user if the series is already linked to Plex.  
     - If yes → Store Plex link status (handle syncing in a separate Plex epic).  
 
@@ -404,51 +404,51 @@ my-media-library/
   Build the data-driven logic for managing series, episodes, and status.
 
   **Tasks:**  
-  - **(Client) Create Dashboard for Series Tracking** → Closes #34  
+  - **(Client) Create Dashboard for Series Tracking**
     - Display all tracked series in a central location.  
     - Show watching status, missing episodes, and subtitle status.  
     - Highlight missing data using color-coding.  
 
-  - **(Server) Provide Series Data** → Closes #35  
+  - **(Server) Provide Series Data**
     - Create backend route to provide series data to the client.  
     - Include series metadata, watch status, and subtitle status.  
 
-  - **(Client) Add Filtering & Color-Coding** → Closes #36  
+  - **(Client) Add Filtering & Color-Coding**
     - Filter by watching status (Watching, Completed, Unwatched).  
     - Filter by subtitle status (With, Without, Mixed).  
     - Highlight missing data with color coding.  
 
-  - **(Server) Provide Filtering Logic** → Closes #37  
+  - **(Server) Provide Filtering Logic**
     - Create backend route to return filtered series data.  
     - Allow filtering by subtitle status, series status, and watch status.  
 
-  - **(Client) Viewing Status Management UI** → Closes #38  
+  - **(Client) Viewing Status Management UI**
     - Allow user to change viewing status directly from the UI.  
     - Display icons for each watching status.  
 
-  - **(Server) Handle Status Updates** → Closes #39  
+  - **(Server) Handle Status Updates**
     - Update the database when the user changes the viewing status.  
     - Reflect the change in the next data sync.  
 
-  - **(Client) Manage Subtitle Status** → Closes #40  
+  - **(Client) Manage Subtitle Status**
     - Track subtitle status (with, mixed, without).  
     - Allow manual subtitle status changes.  
 
-  - **(Server) Handle Subtitle Status Updates** → Closes #41  
+  - **(Server) Handle Subtitle Status Updates**
     - Update the database when the subtitle status changes.  
     - Reflect the change in the next data sync.
-  - **(Server) Sync Custom Metadata** → Closes #67  
+  - **(Server) Sync Custom Metadata**
     - If tags/labels are changed after series data sync → Update internal state.  
     - Sync changes to Plex if Plex sync is enabled.  
 
-  - **(Client) Manual Metadata Refresh** → Closes #68  
+  - **(Client) Manual Metadata Refresh**
     - Allow user to manually trigger metadata refresh from TVDB or Plex.  
     - Reflect updated data in the dashboard.  
 
-  - **(Server) Allow Partial Metadata Sync** → Closes #69  
+  - **(Server) Allow Partial Metadata Sync**
     - If metadata from Plex or TVDB is incomplete → Allow user to override specific fields.  
 
-  - **(Client) Display Metadata Sync Status in Dashboard** → Closes #68  
+  - **(Client) Display Metadata Sync Status in Dashboard**
     - Reflect metadata sync status in the series dashboard.  
     - Display a success or failure state after sync.  
 
@@ -467,56 +467,56 @@ my-media-library/
   Automate adding series from filesystem scan and handle mismatched metadata.
 
   **Tasks:**  
-  - **(Client) Trigger Filesystem Scan** → Closes #42  
+  - **(Client) Trigger Filesystem Scan**
     - Create button in the UI to trigger filesystem scan.  
     - Display real-time scan status and progress.  
 
-  - **(Server) Scan Filesystem for New Series** → Closes #43  
+  - **(Server) Scan Filesystem for New Series**
     - Scan filesystem for new series folders.  
     - Detect mismatched or incomplete metadata.  
     - Return a list of detected series to the client.  
 
-  - **(Client) Display Detected Series** → Closes #44  
+  - **(Client) Display Detected Series**
     - Display list of detected series in a confirmation UI.  
     - Allow user to confirm or reject detected matches.  
 
-  - **(Server) Match with TheTVDB** → Closes #45  
+  - **(Server) Match with TheTVDB**
     - Attempt to match series folder names to TheTVDB.  
     - If multiple matches → Return possible options to client.  
     - If no match → Mark series as "Unmatched."  
 
-  - **(Client) Confirm Match or Manual Fix** → Closes #46  
+  - **(Client) Confirm Match or Manual Fix**
     - Allow user to confirm match or manually fix metadata.  
     - If confirmed → Save metadata.  
     - If rejected → Mark as "Unmatched."  
 
-  - **(Server) Save Metadata + Create Folders** → Closes #47  
+  - **(Server) Save Metadata + Create Folders**
     - Save matched series to the database.  
     - Create empty folders for missing episodes and seasons.  
 
-  - **(Server) Download Posters** → Closes #48  
+  - **(Server) Download Posters**
     - Download series poster from TheTVDB.  
     - Download season posters (if available).  
 
-  - **(Server) Handle Unmatched Series** → Closes #49  
+  - **(Server) Handle Unmatched Series**
     - If series cannot be matched → Store in "Unmatched" table.  
     - Allow future metadata sync.  
 
-  - **(Server) Handle File Movement** → Closes #50  
+  - **(Server) Handle File Movement**
     - Allow user to manually move files.  
     - Create backend route to rename or delete files.  
     - Reflect file movement in the database.  
     - Allow direct path updates.  
 
-  - **(Client) Trigger File Movement** → Closes #51  
+  - **(Client) Trigger File Movement**
     - Add UI for manual file movement.  
     - Display status after file operation.  
 
-  - **(Server) Sync Metadata After File Movement** → Closes #70  
+  - **(Server) Sync Metadata After File Movement**
     - If file is manually moved or renamed → Update file path and metadata in the database.  
     - Reflect updated path in the dashboard.  
 
-  - **(Client) Reflect File Movement Status in Dashboard** → Closes #71  
+  - **(Client) Reflect File Movement Status in Dashboard**
     - After file is moved or renamed → Update file path and sync status in the dashboard.     
 
   **Status:**  
@@ -534,46 +534,46 @@ my-media-library/
   Automate subtitle management and provide manual controls for subtitle state.
 
   **Tasks:**  
-  - **(Server) Detect Subtitle Status** → Closes #50  
+  - **(Server) Detect Subtitle Status**
     - After series is added → Detect existing subtitle files.  
     - Classify subtitle status as "With", "Mixed", or "No Subs."  
 
-  - **(Client) Display Subtitle Status in Dashboard** → Closes #51  
+  - **(Client) Display Subtitle Status in Dashboard**
     - Display subtitle status in the series dashboard.  
     - Use color coding to reflect subtitle status.  
 
-  - **(Server) OpenSubtitles Integration** → Closes #52  
+  - **(Server) OpenSubtitles Integration**
     - Create backend connection to OpenSubtitles API.  
     - Handle authentication and token refresh.  
     - Return list of available subtitles.  
 
-  - **(Client) Fetch and Confirm Subtitles** → Closes #53  
+  - **(Client) Fetch and Confirm Subtitles**
     - Allow user to manually trigger subtitle download.  
     - Display available subtitle options (if multiple exist).  
     - Allow user to confirm or reject the subtitle match.  
 
-  - **(Server) Save Subtitle Files to Filesystem** → Closes #54  
+  - **(Server) Save Subtitle Files to Filesystem**
     - After confirmation → Download subtitle files.  
     - Save subtitle files in the correct episode folder.  
 
-  - **(Server) Rename Hebrew Subtitles to `.heb`** → Closes #55  
+  - **(Server) Rename Hebrew Subtitles to `.heb`**
     - If subtitle language = Hebrew → Rename file to `.heb`.  
 
-  - **(Client) Manual Override of Subtitle Status** → Closes #56  
+  - **(Client) Manual Override of Subtitle Status**
     - Allow user to manually update subtitle status.  
     - Update database state after user change.  
 
-  - **(Server) Reflect Subtitle State Updates** → Closes #57  
+  - **(Server) Reflect Subtitle State Updates**
     - Update subtitle state in database after manual change.  
     - Reflect the update in the series dashboard.  
 
-  - **(Server) Cron Job for Missing Subtitles** → Closes #58  
+  - **(Server) Cron Job for Missing Subtitles**
     - Create a cron job to run at regular intervals.  
     - Check OpenSubtitles for newly available subtitles.  
     - If new subtitle is found → Automatically download and save to filesystem.  
     - Update subtitle state in the database.  
 
-  - **(Client) Multi-Language Subtitle Handling** → Closes #71  
+  - **(Client) Multi-Language Subtitle Handling**
     - If multiple subtitle tracks are available → Allow user to select preferred language.  
     - Save language preference for future subtitle downloads.  
 
@@ -592,52 +592,52 @@ my-media-library/
   Allow syncing of series metadata and watch status from Plex.
 
   **Tasks:**  
-  - **(Client) Create Plex Settings Page** → Closes #59  
+  - **(Client) Create Plex Settings Page**
     - Create UI for setting up Plex connection.  
     - Allow user to input Plex token and server details.  
     - Test connection status.  
 
-  - **(Server) Handle Plex Connection** → Closes #60  
+  - **(Server) Handle Plex Connection**
     - Create backend connection to Plex using Plex API.  
     - Store Plex token and connection details in the database.  
     - Handle token refresh.  
 
-  - **(Client) Manual Link to Plex** → Closes #61  
+  - **(Client) Manual Link to Plex**
     - Allow user to manually link existing series to Plex.  
     - Display available Plex libraries for matching.  
     - Save link status in the database.  
 
-  - **(Server) Sync Metadata from Plex** → Closes #62  
+  - **(Server) Sync Metadata from Plex**
     - Pull existing metadata from Plex.  
     - Sync episode data, watch status, and artwork.  
     - Handle conflicts with existing metadata.  
 
-  - **(Server) Sync Watch Status from Plex** → Closes #63  
+  - **(Server) Sync Watch Status from Plex**
     - Pull watch status from Plex.  
     - Update internal watch status in the database.  
     - Reflect updated status in the series dashboard.  
 
-  - **(Server) Sync Missing Data from Plex** → Closes #64  
+  - **(Server) Sync Missing Data from Plex**
     - Check Plex for missing episode or subtitle data.  
     - If available → Sync with internal state.  
     - Update database with missing data.  
 
-  - **(Client) Display Sync Status** → Closes #65  
+  - **(Client) Display Sync Status**
     - Display Plex sync status on the series dashboard.  
     - Allow user to manually trigger a Plex sync.  
 
-  - **(Server) Handle Sync Conflicts** → Closes #66  
+  - **(Server) Handle Sync Conflicts**
     - If conflicts between Plex and internal state → Show resolution options.  
     - Allow user to override Plex or internal state.  
 
-  - **(Server) Handle Plex Conflict Resolution** → Closes #72  
+  - **(Server) Handle Plex Conflict Resolution**
     - If Plex and internal state conflict → Show resolution options to user.  
     - Allow user to override Plex or internal state.  
 
-  - **(Client) Better Error Reporting for Failed Syncs** → Closes #73  
+  - **(Client) Better Error Reporting for Failed Syncs**
     - If Plex or TVDB sync fails → Display clear error and retry option.
 
-  - **(Client) Display Sync Errors in Dashboard** → Closes #72  
+  - **(Client) Display Sync Errors in Dashboard**
     - If Plex or TVDB sync fails → Show error message in the dashboard.  
     - Provide option to retry the sync.  
 
@@ -655,31 +655,31 @@ my-media-library/
   Allow users to define custom tags and labels for better series organization and filtering.
 
   **Tasks:**  
-  - **(Client) Create UI for Tags** → Closes #52  
+  - **(Client) Create UI for Tags**
     - Create UI for defining and assigning custom tags.  
     - Allow user to add or remove tags from series.  
 
-  - **(Server) Define Tags Table** → Closes #53  
+  - **(Server) Define Tags Table**
     - Create table for storing custom tags.  
     - Allow linking between series and tags.  
 
-  - **(Client) Create Collections** → Closes #54  
+  - **(Client) Create Collections**
     - Allow user to create collections of series based on tags or status.  
     - Example: "All K-Dramas" or "Unfinished Series."  
 
-  - **(Server) Define Collections Table** → Closes #55  
+  - **(Server) Define Collections Table**
     - Create table for storing collections.  
     - Allow linking between series and collections.  
 
-  - **(Server) Sync with Plex Tags** → Closes #56  
+  - **(Server) Sync with Plex Tags**
     - If Plex sync is active → Pull tags from Plex.  
     - Match Plex tags with internal tag system.  
 
-  - **(Client) Add Filtering by Tags** → Closes #57  
+  - **(Client) Add Filtering by Tags**
     - Update existing filter to allow filtering by custom tags and collections.  
     - Display custom tags and collections in the dashboard.  
 
-  - **(Server) Reflect Tag and Collection Updates** → Closes #58  
+  - **(Server) Reflect Tag and Collection Updates**
     - Update series metadata when tags or collections are changed.  
     - Reflect changes in the next sync.  
 
@@ -697,38 +697,38 @@ my-media-library/
   Improve system stability, performance, and maintainability.
 
   **Tasks:**  
-  - **(Server) Improve Error Handling** → Closes #67  
+  - **(Server) Improve Error Handling**
     - Centralize error handling across backend services.  
     - Catch unhandled exceptions and log them.  
     - Add proper status codes for failed requests.  
 
-  - **(Client) Improve UI Error Handling** → Closes #68  
+  - **(Client) Improve UI Error Handling**
     - Display clear error messages to the user.  
     - Handle network errors and retries automatically.  
 
-  - **(Server) Optimize Filesystem Scan** → Closes #69  
+  - **(Server) Optimize Filesystem Scan**
     - Improve file scanning speed using parallel processing.  
     - Reduce filesystem locks and I/O conflicts.  
 
-  - **(Server) Optimize Subtitle Fetching** → Closes #70  
+  - **(Server) Optimize Subtitle Fetching**
     - Reduce OpenSubtitles request frequency.  
     - Cache results where possible.  
 
-  - **(Server) Optimize Metadata Sync** → Closes #71  
+  - **(Server) Optimize Metadata Sync**
     - Batch sync operations to reduce database load.  
     - Add smart caching to minimize redundant requests.  
 
-  - **(Client) Code Cleanup** → Closes #72  
+  - **(Client) Code Cleanup**
     - Remove unused imports and legacy code.  
     - Simplify complex UI components.  
     - Improve type safety and PropTypes definitions.  
 
-  - **(Server) Code Cleanup** → Closes #73  
+  - **(Server) Code Cleanup**
     - Remove unused endpoints and services.  
     - Simplify complex business logic.  
     - Improve TypeScript type coverage.  
 
-  - **(Server) Improve Logging and Monitoring** → Closes #74  
+  - **(Server) Improve Logging and Monitoring**
     - Add structured logging to backend services.  
     - Improve log filtering and searchability.  
     - Add monitoring for system health and failures.  
@@ -748,37 +748,37 @@ my-media-library/
   Add optional enhancements to improve the user experience and expand functionality.
 
   **Tasks:**  
-  - **(Client) Streaming Integration** → Closes #59  
+  - **(Client) Streaming Integration**
     - Add support for direct streaming from the filesystem.  
     - Include playback controls (play, pause, skip).  
 
-  - **(Server) Transcoding Support** → Closes #60  
+  - **(Server) Transcoding Support**
     - Allow transcoding for unsupported codecs.  
     - Handle real-time transcoding for streaming.  
 
-  - **(Client) Multi-User Profiles (Plex-Linked)** → Closes #61  
+  - **(Client) Multi-User Profiles (Plex-Linked)**
     - Allow user to create multiple profiles.  
     - Link internal profiles to Plex profiles (if Plex sync is active).  
     - Separate viewing status and series tracking by profile.  
 
-  - **(Server) Multi-User Handling** → Closes #62  
+  - **(Server) Multi-User Handling**
     - Create database structure for user profiles.  
     - Link series and metadata to specific profiles.  
     - Sync profile-specific data with Plex if available.  
 
-  - **(Client) Recommendations** → Closes #63  
+  - **(Client) Recommendations**
     - Suggest series based on viewing history.  
     - Display recommendations in the dashboard.  
 
-  - **(Server) Recommendations Engine** → Closes #64  
+  - **(Server) Recommendations Engine**
     - Create a backend service for recommendation logic.  
     - Recommend series based on similar tags, viewing patterns, and metadata.  
 
-  - **(Client) Dark Mode** → Closes #65  
+  - **(Client) Dark Mode**
     - Add UI toggle for dark/light mode.  
     - Store user preference in local storage.  
 
-  - **(Client) Plex Library Sync** → Closes #66  
+  - **(Client) Plex Library Sync**
     - Sync Plex libraries to internal state.  
     - Allow manual or automatic sync.  
 
