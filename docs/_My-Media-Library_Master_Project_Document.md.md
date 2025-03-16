@@ -223,17 +223,17 @@ my-media-library/
   Ensure that all project documentation is comprehensive, up-to-date, and well-organized. 
 
   **Tasks:**  
-  - **Review & Update Master Project Document** → Closes #4  
+  - **Review & Update Master Project Document** → Closes #1  
     - Compare current content with recent changes.  
     - Update sections to reflect new scanning logic, manual data input, and integration points.  
     - Ensure that the epics and milestones are correctly documented.  
 
-  - **Enhance the README** → Closes #5  
+  - **Enhance the README** → Closes #2  
     - Provide a clear project overview.  
     - Include setup instructions (dependencies, environment variables, running client/server).  
     - Summarize basic usage (e.g., adding a series, scanning vs. manual input).  
 
-  - **Create/Update the `/docs` Folder** → Closes #6  
+  - **Create/Update the `/docs` Folder** → Closes #3  
     - Add subsystem-specific documentation (e.g., `docs/thetvdb.md`, `docs/plex.md`, `docs/opensubtitles.md`, `docs/filesystem.md`, `docs/env-variables.md`).  
     - Create epic-specific docs (e.g., `docs/epic1.md`, `docs/epic2.md`, etc.) detailing the goals, tasks, and status for each epic.  
 
