@@ -4,11 +4,11 @@
 Create and maintain comprehensive project documentation for both developers and users.
 
 ## ✅ Tasks  
-- **Review & Update Master Project Document** → Closes #4  
-- **Enhance the README** → Closes #5  
-- **Create/Update the `/docs` Folder** → Closes #6  
-- **Outline Architecture & Approach** → Closes #7  
-- **Document Git Workflow** → Closes #8  
+- **Review & Update Master Project Document** → Closes #1  
+- **Enhance the README** → Closes #2  
+- **Create/Update the `/docs` Folder** → Closes #3  
+- **Outline Architecture & Approach** → Closes #4  
+- **Document Git Workflow** → Closes #5  
 
 ## 🏆 Status  
 ✅ Completed  

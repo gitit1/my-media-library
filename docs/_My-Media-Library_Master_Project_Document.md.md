@@ -237,12 +237,12 @@ my-media-library/
     - Add subsystem-specific documentation (e.g., `docs/thetvdb.md`, `docs/plex.md`, `docs/opensubtitles.md`, `docs/filesystem.md`, `docs/env-variables.md`).  
     - Create epic-specific docs (e.g., `docs/epic1.md`, `docs/epic2.md`, etc.) detailing the goals, tasks, and status for each epic.  
 
-  - **Create High-Level Architecture Diagrams** → Closes #7  
+  - **Create High-Level Architecture Diagrams** → Closes #4  
     - Create a sequence diagram showing the flow of data (frontend ↔ backend ↔ Plex ↔ TVDB ↔ filesystem).  
     - Include a data flowchart to visualize series input, subtitle fetching, and syncing.  
 
 
-  - **Document Git Workflow** → Closes #8  
+  - **Document Git Workflow** → Closes #5  
     - Explain how to link issues to commits (e.g., using “Closes #X” in commit messages).  
     - Detail the process for maintaining a clean Git history.  
 
