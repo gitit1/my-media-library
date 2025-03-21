@@ -2,6 +2,8 @@
 
 import { ReactNode } from 'react';
 import { useTheme } from '../theme/ThemeProvider';
+import CloseIcon from '../theme/svg/CloseIcon';
+import Button from '../components/Button';
 
 type ModalProps = {
   isOpen: boolean;
@@ -11,64 +13,61 @@ type ModalProps = {
 };
 
 const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
-  const { currentTheme } = useTheme();
+  const { theme } = useTheme();
 
   if (!isOpen) return null;
 
   return (
     <div
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Dark overlay background
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 50,
-      }}
       onClick={onClose}
+      className="
+        fixed inset-0 
+        bg-black bg-opacity-50 
+        flex items-center justify-center 
+        z-50
+      "
     >
       <div
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
-        style={{
-          backgroundColor: currentTheme.colors.surface,
-          color: currentTheme.colors.text,
-          padding: currentTheme.spacing.lg,
-          borderRadius: '0.5rem',
-          width: '90%',
-          maxWidth: '500px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-        }}
+        onClick={(e) => e.stopPropagation()}
+        className={`
+          ${theme === 'light' ? 'bg-surface-light' : 'bg-surface-dark'}
+          rounded-md shadow-lg 
+          w-full max-w-md 
+          p-6 
+          transition-all 
+          duration-200 
+          transform 
+          scale-100 
+          hover:scale-105
+        `}
       >
-        {title && (
-          <div
-            style={{
-              marginBottom: currentTheme.spacing.sm,
-              fontSize: currentTheme.typography.fontSize.lg,
-              fontWeight: currentTheme.typography.fontWeight.medium,
-            }}
+        {/* Header with Close Button */}
+        <div className="flex items-center justify-between mb-4">
+          {title && (
+            <div className="text-[18px] font-medium leading-none">
+              {title}
+            </div>
+          )}
+          {/* Close Button Using Icon Mode */}
+          <Button
+            onClick={onClose}
+            icon
+            className="
+              bg-transparent 
+              hover:bg-gray-200 
+              dark:hover:bg-gray-700 
+              text-gray-400 
+              hover:text-gray-600 
+              transition duration-200
+              flex items-center justify-center
+            "
           >
-            {title}
-          </div>
-        )}
+            <CloseIcon className="h-4 w-4" />
+          </Button>
+        </div>
+
+        {/* Modal Body */}
         <div>{children}</div>
-        <button
-          onClick={onClose}
-          style={{
-            marginTop: currentTheme.spacing.md,
-            backgroundColor: currentTheme.colors.primary,
-            color: currentTheme.colors.text,
-            padding: currentTheme.spacing.sm,
-            borderRadius: '0.375rem',
-            border: `1px solid rgba(255, 255, 255, 0.3)`,
-            fontSize: currentTheme.typography.fontSize.base,
-          }}
-        >
-          Close
-        </button>
       </div>
     </div>
   );

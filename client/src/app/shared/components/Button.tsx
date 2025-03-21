@@ -6,31 +6,24 @@ type ButtonProps = {
   onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
+  icon?: boolean;
 };
 
-const Button = ({ children, onClick, className, type = 'button' }: ButtonProps) => {
-  const { currentTheme, theme } = useTheme();
+const Button = ({ children, onClick, className, type = 'button', icon = false }: ButtonProps) => {
+  const { theme } = useTheme();
 
   return (
     <button
       onClick={onClick}
       type={type}
-      style={{
-        backgroundColor: currentTheme.colors.primary,
-        color: currentTheme.colors.text,
-        padding: currentTheme.spacing.sm,
-        borderRadius: '0.375rem',
-        fontSize: currentTheme.typography.fontSize.base,
-        transition: 'background-color 0.2s ease-in-out',
-        border: `1px solid ${theme === 'dark' ? 'rgba(255, 255, 255, 0.3)' : 'rgba(0, 0, 0, 0.1)'}`,
-      }}
-      className={className}
-      onMouseEnter={(e) =>
-        (e.currentTarget.style.backgroundColor = currentTheme.colors.secondary)
-      }
-      onMouseLeave={(e) =>
-        (e.currentTarget.style.backgroundColor = currentTheme.colors.primary)
-      }
+      className={`
+        ${theme === 'light' ? 'bg-primary-light hover:bg-secondary-light' : 'bg-primary-dark hover:bg-secondary-dark'}
+        border ${theme === 'light' ? 'border-gray-200' : 'border-gray-700'}
+        text-white 
+        ${icon ? 'p-1 h-8 w-8 rounded-full flex items-center justify-center' : 'px-4 py-2 rounded-md'}
+        transition duration-200 
+        ${className || ''}
+      `}
     >
       {children}
     </button>

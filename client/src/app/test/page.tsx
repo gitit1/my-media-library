@@ -17,17 +17,27 @@ const TestPage = () => {
 
       <div style={{ marginTop: '2rem', display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
         {/* Card without an image */}
-        <Card title="Test Card">
-          <p>This is a sample card. It should match the theme and hover effect should work!</p>
-        </Card>
+          <Card title="Basic Card">
+            <p>This is a basic card without an image.</p>
+          </Card>
 
-        {/* Card with an image */}
-        <Card
-          title="Card with Image"
-          image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuv9k29YsGJxdI95Fn6Bx6lh_3MYcikQyvRw&s"
-        >
-          <p>This card includes an image and should scale properly!</p>
-        </Card>
+          {/* Card with Image */}
+          <Card
+            title="Card with Image"
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv54yNV4g27Dz0fmNI4qWfzofq6cITIqENdA&s"
+          >
+            <p>This card includes an image.</p>
+          </Card>
+
+          {/* Clickable Card */}
+          <Card
+            title="Clickable Card"
+            clickable
+            onClick={() => alert('Card clicked!')}
+            image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuaCPHZvXA8tqyRHDSn5E1ZuxW-h5ocCJcMQ&s"
+          >
+            <p>Clicking this card should trigger an event.</p>
+          </Card>
       </div>
     </div>
   );
