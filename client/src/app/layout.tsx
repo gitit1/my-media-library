@@ -1,13 +1,7 @@
-// layout.tsx
-import './globals.css';
-import type { Metadata } from 'next';
-import { ThemeProvider } from './shared/ThemeProvider';
-import ThemeToggle from './shared/ThemeToggle';
-
-export const metadata: Metadata = {
-  title: 'My Media Library',
-  description: 'Manage TV series and movies seamlessly.',
-};
+import { ThemeProvider } from "./shared/theme/ThemeProvider";
+import ThemeToggle from "./shared/theme/ThemeToggle";
+import ThemeWrapper from "./shared/theme/ThemeWrapper";
+import './globals.css'
 
 export default function RootLayout({
   children,
@@ -18,8 +12,10 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeProvider>
-          <ThemeToggle />
-          {children}
+          <ThemeWrapper>
+            <ThemeToggle />
+            {children}
+          </ThemeWrapper>
         </ThemeProvider>
       </body>
     </html>
