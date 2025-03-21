@@ -4,6 +4,7 @@ import { ThemeProvider } from "./shared/theme/ThemeProvider";
 import ThemeWrapper from "./shared/theme/ThemeWrapper";
 import './globals.css';
 import { LanguageProvider } from "@/i18n/LanguageProvider";
+import Header from "./shared/components/Header";
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,8 @@ export default function RootLayout({
     <html lang="en" className={inter.className}>
       <body>
         <ThemeProvider>
-          <ThemeWrapper>  
+          <ThemeWrapper>
+            <Header />
             <LanguageProvider>{children}</LanguageProvider>
           </ThemeWrapper>
         </ThemeProvider>

@@ -8,7 +8,13 @@ interface FlexProps {
   gap?: number;
 }
 
-export default function Flex({ children, className = '', align = 'center', justify = 'between', gap = 4 }: FlexProps) {
+export default function Flex({
+  children,
+  className = '',
+  align = 'center',
+  justify = 'between',
+  gap = 4,
+}: FlexProps) {
   const alignClass = {
     center: 'items-center',
     start: 'items-start',

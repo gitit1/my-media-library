@@ -1,18 +1,10 @@
-import Header from "./components/Header";
+import PageContainer from "@/app/shared/components/PageContainer";
+import HorizontalNav from "./components/HorizontalNav";
 
 export default function DashboardPage() {
   return (
-    <main className="flex flex-col min-h-screen">
-      
-      {/* Header Section */}
-      <Header />
-
-      {/* Horizontal Navigation */}
-      <nav className="flex gap-4 px-6 py-3 bg-gray-100 shadow-sm">
-        <button className="px-4 py-2 bg-blue-500 text-white rounded">Scan Filesystem</button>
-        <button className="px-4 py-2 bg-green-500 text-white rounded">Add New Series</button>
-        <button className="px-4 py-2 bg-purple-500 text-white rounded">Add New Path</button>
-      </nav>
+    <PageContainer>
+      <HorizontalNav />
 
       {/* Main Content Area */}
       <section className="flex flex-1">
@@ -71,6 +63,6 @@ export default function DashboardPage() {
           </section>
         </div>
       </section>
-    </main>
+    </PageContainer>
   );
 }

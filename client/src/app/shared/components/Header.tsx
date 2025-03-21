@@ -2,6 +2,7 @@
 
 import '@/i18n/config';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
 import { Languages, Settings } from 'lucide-react';
 import { useLanguage } from '@/i18n/LanguageProvider';
 import Button from "@/app/shared/components/Button";
@@ -18,7 +19,9 @@ export default function Header() {
   return (
     <Container>
       <Flex>
-        <Typography type="h1">{t('dashboard.title')}</Typography>
+        <Link href="/">
+          <Typography type="h1">{t('dashboard.title')}</Typography>
+        </Link>
         <Flex gap={4}>
           <Input placeholder={t('dashboard.searchPlaceholder')} />
           <ThemeToggle />
