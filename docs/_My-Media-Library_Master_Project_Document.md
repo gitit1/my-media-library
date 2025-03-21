@@ -25,15 +25,19 @@ my-media-library/
 ├── client/               # Next.js Frontend
 │   └── src/
 │       ├── app/          # Pages (Next.js App Router)
-│       │   ├── series/   # Series-based pages
-│       │   │   ├── add/          # Add new series
-│       │   │   ├── dashboard/    # Series dashboard
-│       │   │   ├── confirm/      # Confirm match
-│       │   │   ├── saved/        # Saved series list
-│       │   │   ├── unmatched/    # Unmatched series
-│       │   ├── settings/         # Settings pages
-│       │   │   ├── paths/        # Manage file paths
-│       │   ├── shared/           # Shared UI components (Button, Modal, Card, etc.)
+│       │   ├── pages/
+│       │   │   ├── series/       # Series-based pages
+│       │   │   │   ├── add/          # Add new series
+│       │   │   │   ├── dashboard/    # Series dashboard
+│       │   │   │   ├── confirm/      # Confirm match
+│       │   │   │   ├── saved/        # Saved series list
+│       │   │   │   ├── scanner/      # Scanner page
+│       │   │   │   └── unmatched/    # Unmatched series
+│       │   │   └── settings/     # Settings pages
+│       │   │       ├── paths/        # Manage file paths
+│       │   │       │   └── page.tsx  # Paths management page
+│       │   │       └── page.tsx      # Main settings page
+│       │   └── shared/           # Shared UI components (Button, Modal, Card, etc.)
 │       ├── components/           # Extra UI components
 │       ├── services/             # API integrations
 │       ├── hooks/                # React hooks (data fetching, state)
@@ -43,14 +47,13 @@ my-media-library/
 ├── server/               # NestJS Backend
 │   └── src/
 │       ├── controllers/  # REST controllers (scanning, series, subtitles)
-│       ├── services/     # Business logic (scanner, plex integration, etc.)
+│       ├── services/     # Business logic (scanner, Plex integration, etc.)
 │       ├── modules/      # Feature modules
 │       ├── entities/     # Database entities (Series, Season, Episode, etc.)
 │       ├── types/        # Shared/custom TS types
 │       └── lib/          # Additional utilities/helpers
 │
 └── scripts/              # Cron jobs, background tasks
-```
 
 ---
 
