@@ -1,6 +1,8 @@
 // layout.tsx
 import './globals.css';
 import type { Metadata } from 'next';
+import { ThemeProvider } from './shared/ThemeProvider';
+import ThemeToggle from './shared/ThemeToggle';
 
 export const metadata: Metadata = {
   title: 'My Media Library',
@@ -15,7 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <ThemeProvider>
+          <ThemeToggle />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
