@@ -32,6 +32,9 @@ module.exports = {
         lg: '1.5rem',   // 24px
         xl: '2rem',     // 32px
       },
+      fontFamily: {
+        sans: ['var(--font-inter)', 'sans-serif'],
+      },
     },
   },
   plugins: [],

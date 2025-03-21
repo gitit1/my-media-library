@@ -2,7 +2,6 @@
 
 import { ReactNode } from 'react';
 import { useTheme } from '../theme/ThemeProvider';
-import CloseIcon from '../theme/svg/CloseIcon';
 import Button from '../components/Button';
 
 type ModalProps = {
@@ -51,7 +50,7 @@ const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
           {/* Close Button Using Icon Mode */}
           <Button
             onClick={onClose}
-            icon
+            icon="close"
             className="
               bg-transparent 
               hover:bg-gray-200 
@@ -61,9 +60,7 @@ const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
               transition duration-200
               flex items-center justify-center
             "
-          >
-            <CloseIcon className="h-4 w-4" />
-          </Button>
+          />
         </div>
 
         {/* Modal Body */}

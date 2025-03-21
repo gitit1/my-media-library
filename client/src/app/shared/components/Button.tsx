@@ -1,31 +1,47 @@
-import { ReactNode } from 'react';
+'use client';
+
+import Link from 'next/link';
+import { X } from 'lucide-react';
 import { useTheme } from '../theme/ThemeProvider';
 
-type ButtonProps = {
-  children: ReactNode;
+interface ButtonProps {
+  children?: React.ReactNode;
   onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
-  icon?: boolean;
-};
+  icon?: 'close' | React.ReactNode;
+  href?: string; // clearly added optional link prop
+}
 
-const Button = ({ children, onClick, className, type = 'button', icon = false }: ButtonProps) => {
+const Button = ({ children, onClick, className, type = 'button', icon, href }: ButtonProps) => {
   const { theme } = useTheme();
 
-  return (
-    <button
-      onClick={onClick}
-      type={type}
-      className={`
-        ${theme === 'light' ? 'bg-primary-light hover:bg-secondary-light' : 'bg-primary-dark hover:bg-secondary-dark'}
-        border ${theme === 'light' ? 'border-gray-200' : 'border-gray-700'}
-        text-white 
-        ${icon ? 'p-1 h-8 w-8 rounded-full flex items-center justify-center' : 'px-4 py-2 rounded-md'}
-        transition duration-200 
-        ${className || ''}
-      `}
-    >
+  const renderIcon = () => {
+    if (icon === 'close') return <X />;
+    if (icon) return icon;
+    return null;
+  };
+
+  const buttonContent = (
+    <>
+      {renderIcon()}
       {children}
+    </>
+  );
+
+  const buttonClasses = `inline-flex items-center gap-2 px-4 py-2 rounded-xl transition-colors duration-200 ${
+    theme === 'dark'
+      ? 'bg-gray-700 text-white hover:bg-gray-600'
+      : 'bg-gray-200 text-gray-900 hover:bg-gray-300'
+  } ${className}`;
+
+  return href ? (
+    <Link href={href} className={buttonClasses}>
+      {buttonContent}
+    </Link>
+  ) : (
+    <button type={type} onClick={onClick} className={buttonClasses}>
+      {buttonContent}
     </button>
   );
 };

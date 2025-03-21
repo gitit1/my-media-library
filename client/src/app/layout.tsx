@@ -1,7 +1,16 @@
+import { Metadata } from "next";
+import { Inter } from 'next/font/google';
 import { ThemeProvider } from "./shared/theme/ThemeProvider";
-import ThemeToggle from "./shared/theme/ThemeToggle";
 import ThemeWrapper from "./shared/theme/ThemeWrapper";
-import './globals.css'
+import './globals.css';
+
+const inter = Inter({ subsets: ['latin'] });
+
+export const metadata: Metadata = {
+  title: 'My Media Library',
+  description: 'Manage and track your TV series',
+};
+
 
 export default function RootLayout({
   children,
@@ -9,11 +18,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>
         <ThemeProvider>
-          <ThemeWrapper>
-            <ThemeToggle />
+          <ThemeWrapper>  
             {children}
           </ThemeWrapper>
         </ThemeProvider>
