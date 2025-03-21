@@ -26,7 +26,7 @@ const TestPage = () => {
             title="Card with Image"
             image="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSv54yNV4g27Dz0fmNI4qWfzofq6cITIqENdA&s"
           >
-            <p>This card includes an image.</p>
+            <p>This card includes an image. </p>
           </Card>
 
           {/* Clickable Card */}
