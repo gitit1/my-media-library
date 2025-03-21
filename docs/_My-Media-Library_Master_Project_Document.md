@@ -36,6 +36,10 @@ my-media-library/
 │       │   │   └── settings/     # Settings pages
 │       │   │       ├── paths/        # Manage file paths
 │       │   │       │   └── page.tsx  # Paths management page
+│       │   │       ├── tags/        # Manage user series tags/label
+│       │   │       │   └── page.tsx  # Tags management page
+│       │   │       ├── collections/  # Manage user series collections
+│       │   │       │   └── page.tsx  # Collections management page
 │       │   │       └── page.tsx      # Main settings page
 │       │   └── shared/           # Shared UI components (Button, Modal, Card, etc.)
 │       ├── components/           # Extra UI components
@@ -54,7 +58,7 @@ my-media-library/
 │       └── lib/          # Additional utilities/helpers
 │
 └── scripts/              # Cron jobs, background tasks
-
+```
 ---
 
 ## 🌐 Tech Stack
@@ -827,5 +831,115 @@ my-media-library/
   This epic focuses on optional enhancements that improve user experience and extend functionality.
 </details>
 
+---
 
+## Pages Overview
+<details>
+  <summary><strong>Dashboard Page</strong></summary>
+
+# 📌 Dashboard Page Detailed Plan
+
+## 🖥️ Overall Page Structure:
+
+### Header Section (Top)
+- **Title:** "My Media Dashboard"
+- **Search Bar:** Quickly search series by name
+- **Settings Icon:** Link to settings page
+
+### Horizontal Navigation (below header)
+Quick Actions:
+- **Scan Filesystem** (Initiates filesystem scan)
+- **Add New Series** (Redirects to add series page)
+- **Add New Path** (Redirects to manage paths page)
+
+### Main Content Area
+- **Left Navigation Sidebar:** Persistent navigation across all pages
+- **Central Dashboard Content:**
+  - Summary Widgets
+  - Notifications Area
+  - Tracked Series Table
+  - Quick-Access Areas (future enhancement)
+
+---
+
+## 📐 Detailed Breakdown by Section:
+
+### 1. 🔝 Header Section
+- **Title:** "My Media Dashboard"
+- **Search Bar:** Quick search for series
+- **Settings Icon:** Link to settings
+
+### 2. 📍 Horizontal Navigation
+Quick-action buttons:
+- **Scan Filesystem**
+- **Add New Series**
+- **Add New Path**
+
+### 3. 📊 Summary Widgets (Center)
+Clickable widgets redirecting to filtered series views:
+
+| Widget                      | Description                                                | Redirect/filter page                         |
+|-----------------------------|------------------------------------------------------------|----------------------------------------------|
+| **Total Series**            | Total number of tracked series                             | Shows all series                             |
+| **Watching**                | Actively watching series                                   | Series filtered by "Watching" status         |
+| **Need to Continue**        | Series needing continuation                                | Series filtered by "Need to Continue" status |
+| **Watched, Stop Following** | Series watched and not followed anymore                    | Series filtered by "Stop Following" status   |
+| **Missing Subtitles**       | Episodes without subtitles                                 | Filtered episodes missing subtitles          |
+| **Missing Episodes**        | Episodes identified as missing                             | Filtered missing episodes                    |
+| **Unmatched Series**        | Filesystem series not matched to TheTVDB                   | Unmatched series                             |
+
+### 4. 📢 Notifications Area
+Prominent notifications highlighting updates:
+- **New Subtitles Available:** Recent subtitle releases
+- **New Episodes Released:** Recently aired episodes
+- **Series Status Changes:** Updates like "Ended" or "New Season"
+- **User-specific Notifications (Future):** Reminders, recently viewed, latest completed series
+
+### 5. 📋 Tracked Series Table
+Detailed list of tracked series:
+
+| Column              | Description                                  | Actions                                 |
+|---------------------|----------------------------------------------|-----------------------------------------|
+| **Poster**          | Thumbnail from TheTVDB                        | Clicking opens details                  |
+| **Series Name**     | Series name (Hebrew/English)                  | Opens detailed series page              |
+| **Watch Status**    | Current watch status (icons/badges)           | Toggle directly                         |
+| **Subtitle Status** | Subtitle availability (icons/badges)          | Manage subtitles                        |
+| **Latest Episode**  | Recently aired/viewed episode                 | Mark as watched or view details         |
+| **Quick Actions**   | Buttons (Edit, Refresh, Scan)                 | Quick operations directly               |
+
+- **Additional Features:**
+  - Filter by watch/subtitle status
+  - Sorting by name, latest episodes
+  - Pagination/infinite scrolling (future enhancement)
+
+### 6. 🚀 Quick-Access Areas (Future Enhancements)
+- **Favorites Section:** Navigate favorite series
+- **Recently Viewed:** Quick links to recent series
+- **Custom Collections/Tags:** User-defined series groups
+
+---
+
+## 🎨 UI/Visual Considerations:
+- Consistent design (Tailwind CSS + shadcn/ui)
+- Clear responsive layout
+- Immediate visibility for key information
+
+---
+
+## 🛠️ Technical Considerations (Next Steps):
+
+- **React Components:**
+  - Header, Navigation, Sidebar, SummaryWidgets, Notifications, SeriesTable
+- **API Endpoints Required:**
+  - Summary data (`GET /series/summary`)
+  - Notifications (`GET /notifications`)
+  - Series table data (`GET /series` with filters/sorting)
+- **State Management & Data Fetching:** SWR or React Query
+
+---
+
+## ⚠️ Special Consideration:
+
+Since the Dashboard is the main page, the file at `app/page.tsx` (outside `pages`) can directly import and render the Dashboard component, serving as the application's root landing page.
+</details>
 
