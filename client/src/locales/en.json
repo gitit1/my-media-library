@@ -1,0 +1,10 @@
+{
+    "dashboard": {
+      "title": "My Media Dashboard",
+      "searchPlaceholder": "Search Series...",
+      "settings": "Settings",
+      "scanFilesystem": "Scan Filesystem",
+      "addNewSeries": "Add New Series",
+      "addNewPath": "Add New Path"
+    }
+  }

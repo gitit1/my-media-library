@@ -1,0 +1,10 @@
+{
+    "dashboard": {
+      "title": "ספריית המדיה שלי",
+      "searchPlaceholder": "חפש סדרה...",
+      "settings": "הגדרות",
+      "scanFilesystem": "סריקת קבצים",
+      "addNewSeries": "הוסף סדרה חדשה",
+      "addNewPath": "הוסף נתיב חדש"
+    }
+  }
