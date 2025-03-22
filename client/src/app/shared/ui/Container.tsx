@@ -7,7 +7,7 @@ interface ContainerProps {
 
 export default function Container({ children, className = '' }: ContainerProps) {
   return (
-    <div className={`px-6 py-4 shadow bg-white dark:bg-gray-800 ${className}`}>
+    <div className={`bg-gray-50 dark:bg-gray-800 border-gray-300 dark:border-gray-700 ${className}`}>
       {children}
     </div>
   );

@@ -2,7 +2,7 @@
 
 import { ReactNode } from 'react';
 import { useTheme } from '../theme/ThemeProvider';
-import Button from '../components/Button';
+import Button from './Button';
 
 type ModalProps = {
   isOpen: boolean;

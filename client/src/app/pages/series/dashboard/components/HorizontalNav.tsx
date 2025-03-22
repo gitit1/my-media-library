@@ -1,7 +1,7 @@
 'use client';
 
-import Button from '@/app/shared/components/Button';
-import Flex from '@/app/shared/components/Flex';
+import Button from '@/app/shared/ui/Button';
+import Flex from '@/app/shared/ui/Flex';
 import { useRouter } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 

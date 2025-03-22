@@ -7,7 +7,7 @@ interface PageContainerProps {
 
 export default function PageContainer({ children, className = '' }: PageContainerProps) {
   return (
-    <div className={`flex flex-col min-h-screen w-full ${className}`}>
+    <div className={`bg-gray-50 dark:bg-gray-800 ${className}`}>
       {children}
     </div>
   );

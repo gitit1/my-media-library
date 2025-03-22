@@ -35,6 +35,10 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
       },
+      borderColor: {
+        custom: '#d1d5db', // Light mode (gray-400)
+        'custom-dark': '#4b5563' // Dark mode (gray-600)
+      }
     },
   },
   plugins: [],

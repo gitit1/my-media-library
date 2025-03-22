@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Button from '../../shared/components/Button';
-import Modal from '../../shared/components/Modal';
-import Card from '../../shared/components/Card';
+import Button from '../../shared/ui/Button';
+import Modal from '../../shared/ui/Modal';
+import Card from '../../shared/ui/Card';
 
 const TestPage = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -6,5 +6,12 @@
       "scanFilesystem": "סריקת קבצים",
       "addNewSeries": "הוסף סדרה חדשה",
       "addNewPath": "הוסף נתיב חדש"
+    },
+    "sidebar": {
+      "dashboard": "לוח ראשי",
+      "savedSeries": "סדרות שמורות",
+      "scanner": "סורק",
+      "unmatchedSeries": "סדרות ללא שיוך",
+      "settings": "הגדרות"
     }
   }

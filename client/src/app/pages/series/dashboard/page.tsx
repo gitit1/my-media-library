@@ -1,4 +1,4 @@
-import PageContainer from "@/app/shared/components/PageContainer";
+import PageContainer from "@/app/shared/layout/PageContainer";
 import HorizontalNav from "./components/HorizontalNav";
 
 export default function DashboardPage() {
@@ -8,18 +8,6 @@ export default function DashboardPage() {
 
       {/* Main Content Area */}
       <section className="flex flex-1">
-
-        {/* Left Navigation Sidebar */}
-        <aside className="w-56 bg-gray-50 p-4 border-r">
-          <nav className="space-y-2">
-            <a href="#" className="block">Dashboard</a>
-            <a href="#" className="block">Saved Series</a>
-            <a href="#" className="block">Scanner</a>
-            <a href="#" className="block">Unmatched Series</a>
-            <a href="#" className="block">Settings</a>
-          </nav>
-        </aside>
-
         {/* Central Dashboard Content */}
         <div className="flex-1 p-6 overflow-y-auto">
           {/* Summary Widgets */}

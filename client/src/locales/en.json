@@ -6,5 +6,12 @@
       "scanFilesystem": "Scan Filesystem",
       "addNewSeries": "Add New Series",
       "addNewPath": "Add New Path"
+    },
+    "sidebar": {
+      "dashboard": "Dashboard",
+      "savedSeries": "Saved Series",
+      "scanner": "Scanner",
+      "unmatchedSeries": "Unmatched Series",
+      "settings": "Settings"
     }
   }

@@ -4,7 +4,9 @@ import { ThemeProvider } from "./shared/theme/ThemeProvider";
 import ThemeWrapper from "./shared/theme/ThemeWrapper";
 import './globals.css';
 import { LanguageProvider } from "@/i18n/LanguageProvider";
-import Header from "./shared/components/Header";
+import Header from "./shared/layout/Header";
+import { SidebarProvider } from './shared/context/SidebarContext';
+import LayoutContent from './shared/layout/LayoutContent';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -13,19 +15,18 @@ export const metadata: Metadata = {
   description: 'Manage and track your TV series',
 };
 
-
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.className}>
       <body>
         <ThemeProvider>
           <ThemeWrapper>
-            <Header />
-            <LanguageProvider>{children}</LanguageProvider>
+            <LanguageProvider>
+              <SidebarProvider>
+                <Header />
+                <LayoutContent>{children}</LayoutContent>
+              </SidebarProvider>
+            </LanguageProvider>
           </ThemeWrapper>
         </ThemeProvider>
       </body>
