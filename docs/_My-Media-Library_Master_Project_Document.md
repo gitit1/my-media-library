@@ -84,6 +84,52 @@ my-media-library/
 
 ## 🎯 Full Feature Breakdown
 
+## 🏷️ Collections and Types
+
+### 📚 Collections  
+- Each collection should have a unique ID (to be stored in the database).  
+- **Collection Types:**  
+  - **Network** → From TheTVDB (e.g., Prime, CBS, Disney)  
+  - **Series State** → From TheTVDB (e.g., Ended, Running)  
+  - **Viewing State** →  
+    - Ended - Watched (**viewing-state-001**)  
+    - Ended - Need to Continue (**viewing-state-002**)  
+    - Ended - Want to Watch (**viewing-state-003**)  
+    - Ended - Stop Following (**viewing-state-004**)  
+    - Running - Watching (**viewing-state-005**)  
+    - Running - Need to Continue (**viewing-state-006**)  
+    - Running - Want to Watch (**viewing-state-007**)  
+    - Running - Stop Following (**viewing-state-008**)  
+  - **Franchise** → Not displayed in dashboard, but stored (e.g., 9-1-1 Shows, Chicago Shows)  
+  - **World** → Arrowverse (**world-001**), DC (**world-002**), Marvel (**world-003**)  
+  - **Subtitle Status** → With Subs (**subs-1**), No Subs (**subs-2**), Mixed Subs (**subs-3**), Hebrew (**subs-4**), Spanish (**subs-5**), Japanese (**subs-6**)  
+  - **Other** → Mini Series (**other-001**), Open Ending (**other-002**)  
+
+- Each item in a collection is a **tag**.
+
+---
+
+### 🎭 Types  
+- Each type is a distinct kind of series (linked to Plex library).  
+- **Series Types:**  
+  - Series (**type-001**)  
+  - Cartoon (**type-002**)  
+  - Israeli Show (**type-003**)  
+  - Telenovela (**type-004**)  
+  - Spanish Series (**type-005**)  
+  - Japanese Series (**type-006**)  
+  - Other (**type-007**)  
+- User should be able to define additional types.  
+- Plex should reference these as different libraries.  
+
+---
+
+### 🎯 Goal:  
+- Collections and Types should be tightly integrated into the metadata system, with collection types and series types used for filtering and organizing series in the app.  
+- Collections and types should sync with Plex where applicable.  
+- Franchise and World should be stored but not displayed directly in the dashboard.  
+
+
 ### Adding Series
 #### Method 1: From Filesystem Scan
 1. Scan filesystem for new series  

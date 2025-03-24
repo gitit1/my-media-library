@@ -3,14 +3,14 @@
 import { ReactNode } from 'react';
 import { useTheme } from '../theme/ThemeProvider';
 
-type CardProps = {
+interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode;
   title?: string;
   image?: string;
   onClick?: () => void;
   clickable?: boolean;
   className?: string;
-};
+}
 
 const Card = ({ children, title, image, onClick, clickable = false, className }: CardProps) => {
   const { theme } = useTheme();
