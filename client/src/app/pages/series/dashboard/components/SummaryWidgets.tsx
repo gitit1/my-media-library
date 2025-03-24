@@ -28,12 +28,6 @@ export default function SummaryWidgets() {
 
 	const appStats: Stat[] = [
 		{
-			id: 'app-total-series',
-			label_en: 'Total Series',
-			label_he: 'סך הכל סדרות שמורות',
-			value: 42,
-		},
-		{
 			id: 'app-total-missing-episodes',
 			label_en: 'Missing Episodes',
 			label_he: 'פרקים חסרים',
@@ -50,12 +44,18 @@ export default function SummaryWidgets() {
 	const seriesStateCollections: Stat[] = [
 		{
 			id: 'series-state-1',
+			label_en: 'Total Series',
+			label_he: 'סך הכל סדרות שמורות',
+			value: 42,
+		},
+		{
+			id: 'series-state-2',
 			label_en: 'Ended Series',
 			label_he: 'סדרות שהסתיימו',
 			value: 272,
 		},
 		{
-			id: 'series-state-2',
+			id: 'series-state-3',
 			label_en: 'Running Series',
 			label_he: 'סדרות רצות',
 			value: 111,
@@ -150,16 +150,16 @@ export default function SummaryWidgets() {
 
 	const tagCategories: List[] = [
 		{
-			id: 'appStats',
-			name_en: 'App Tracking Status',
-			name_he: 'סטטוס מעקב אפליקציה',
-			data: appStats,
-		},
-		{
 			id: 'seriesState',
 			name_en: 'Series Status',
 			name_he: 'סטטוס סדרה',
 			data: seriesStateCollections,
+		},
+		{
+			id: 'seriesTypes',
+			name_en: 'Series Types',
+			name_he: 'סוגי סדרות',
+			data: seriesTypes,
 		},
 		{
 			id: 'viewingState',
@@ -168,10 +168,10 @@ export default function SummaryWidgets() {
 			data: viewingStateCollections,
 		},
 		{
-			id: 'seriesTypes',
-			name_en: 'Series Types',
-			name_he: 'סוגי סדרות',
-			data: seriesTypes,
+			id: 'appStats',
+			name_en: 'App Tracking Status',
+			name_he: 'סטטוס מעקב אפליקציה',
+			data: appStats,
 		},
 	];
 
