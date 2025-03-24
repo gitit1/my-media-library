@@ -4,6 +4,7 @@ import Container from '@/app/shared/ui/Container';
 import SummaryWidgets from './components/SummaryWidgets';
 import Typography from '@/app/shared/ui/Typography';
 import Notifications from './components/Notifications';
+import SeriesTable from './components/SeriesTable';
 
 export default function DashboardPage() {
 	return (
@@ -11,44 +12,32 @@ export default function DashboardPage() {
 			<HorizontalNav />
 			<Container className="flex flex-1">
 				<Container className="flex-1 p-6 overflow-y-auto ">
-					<SummaryWidgets />
-					<Notifications />
-					<Typography type="h2" className="text-xl font-semibold">
-						Tracked Series
-					</Typography>
-					<Container className="overflow-x-auto mt-3">
-						<table className="w-full table-auto">
-							<thead>
-								<tr>
-									<th className="border px-4 py-2">Poster</th>
-									<th className="border px-4 py-2">
-										Series Name
-									</th>
-									<th className="border px-4 py-2">
-										Watch Status
-									</th>
-									<th className="border px-4 py-2">
-										Subtitle Status
-									</th>
-									<th className="border px-4 py-2">
-										Latest Episode
-									</th>
-									<th className="border px-4 py-2">
-										Actions
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td
-										colSpan={6}
-										className="border px-4 py-2 text-center"
-									>
-										No series tracked yet.
-									</td>
-								</tr>
-							</tbody>
-						</table>
+					<Container className="overflow-x-auto mb-4">
+						<Typography
+							type="h2"
+							className="text-xl font-semibold mb-4"
+						>
+							Notifications
+						</Typography>
+						<Notifications />
+					</Container>
+					<Container className="overflow-x-auto mb-4">
+						<Typography
+							type="h2"
+							className="text-xl font-semibold mb-4"
+						>
+							Summary Traking
+						</Typography>
+						<SummaryWidgets />
+					</Container>
+					<Container className="overflow-x-auto mb-4">
+						<Typography
+							type="h2"
+							className="text-xl font-semibold mb-4"
+						>
+							Tracked Series
+						</Typography>
+						<SeriesTable />
 					</Container>
 				</Container>
 			</Container>

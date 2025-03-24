@@ -206,7 +206,7 @@ export default function SummaryWidgets() {
 					key={category.name_en}
 					className="flex gap-1 mb-2 justify-start items-start w-full"
 				>
-					<Typography type="h4" className="text-md font-semibold">
+					<Typography type="h6" className="text-md font-semibold">
 						{category[`name_${i18n.language}`] || category.name_en}
 					</Typography>
 					<Container className="flex gap-2">
