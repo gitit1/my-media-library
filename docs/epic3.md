@@ -25,13 +25,11 @@ Develop a robust and intuitive user interface for managing series, episodes, sub
     -   Define color tokens and spacing rules
     -   Test with reusable components
 
----
-
 ### **Task 2 – Create High-Level Pages**
 
-#### 2.1 – Create Dashboard Page
+#### **2.1 – Create Dashboard Page**
 
-#### Features:
+##### <u>Features</u>:
 
 -   **Horizonal Navigator**
     -   Action button for file scanning
@@ -52,7 +50,7 @@ Develop a robust and intuitive user interface for managing series, episodes, sub
     -   Highlight missing episodes and indicate overall subtitle status (with, without, partial)
     -   If no series are tracked, display “No series tracked yet.”
 
-#### Implementation:
+##### <u>Implementation</u>:
 
 -   **Horizonal Navigator**
     -   Create a basic navigation component using our custom UI elements
@@ -90,27 +88,155 @@ Develop a robust and intuitive user interface for managing series, episodes, sub
     -   Confirm all sections (nav, widgets, notifications, table) display correctly together
     -   (Future) Replace hard-coded data with real server data when endpoints are ready
 
--   **2.2** Create Series Page
+---
 
-    -   List all tracked series
-    -   Add filtering by status, subtitles, and Plex sync
+#### **2.2 – Create Series Page**
 
--   **2.3** Create Episode Page
+##### <u>Features</u>:
+
+###### Tabs Overview
+
+1. **All Series**
+
+    - The main tab listing every tracked series in a grid/list/table, similar to Plex’s layout.
+    - **Sort By** (user can pick any of the following):
+        - Series status (Ended/Running)
+        - Series type
+        - Title (default)
+        - Year
+        - Release date
+        - Unwatched
+        - Last episode date added
+        - Series date added
+        - Series date viewed
+        - Random
+    - **Filters**:
+        - Watch status (Watching, Need to Continue, etc.)
+        - Subtitle status (With, Without, Mixed)
+        - Plex sync status
+        - Series type
+        - Series data (genre, year)
+        - Series status (ended/running)
+        - Tags
+        - Collections
+    - **Search**:
+        - For now, search by series name.
+        - (Future) Expand to actor, year, keywords, etc.
+    - If no series are tracked, display “No series tracked yet.”
+    - Clicking on a series navigates to **/series/[id]** for the Single-Series Detail page.
+
+2. **Collections**
+
+    - Placeholder tab for now.
+    - Eventually will list all user-defined collections (e.g. “Marvel Shows,” “Anime Collection”).
+    - Each collection might link to a filtered view of the “All Series” tab or open a dedicated page.
+    - For now, can show a “Coming soon” message or minimal info.
+
+3. **Tags**
+
+    - Another placeholder tab.
+    - Eventually displays a list of available tags (like “Telenovela,” “For Kids,” etc.).
+    - Each tag could link to a filtered list of the All Series tab or open a separate page.
+    - For now, just a placeholder.
+
+4. **Categories**
+    - Also a placeholder for custom user categories, or a higher-level classification of shows.
+    - Similar to tags, but might be broader or predefined.
+    - For now, show minimal info or “Coming soon.”
+
+-   **Single-Series Detail (2.2.2)**
+    -   **Route**: `/series/[id]`
+    -   **Layout**:
+        -   Use a **tabs** approach for different aspects of the same series:
+            1. **Overview**: poster, description, watch/subtitle status, Plex indicator, quick actions.
+            2. **Seasons/Episodes**: collapsible or listed episodes, status toggles, sub management.
+            3. **Collections/Tags**: a placeholder tab to eventually manage or view which collections/tags the series belongs to.
+            4. **Categories**: another placeholder tab for future expansions (e.g., custom categories, advanced grouping).
+    -   **Data**:
+        -   Fetch from the backend: general info, seasons/episodes, tags, etc.
+    -   **UI/UX**:
+        -   Show the relevant tab content. For now, the “Collections/Tags” and “Categories” tabs can just say “Coming soon” or display minimal info.
+        -   Provide quick actions like “Mark season as watched,” “Re-scan,” or “Manage subtitles” in the “Overview” or “Seasons/Episodes” tabs.
+    -   **Error/Empty Handling**:
+        -   If the series doesn’t exist or has no data, display “Series not found.”
+
+##### <u>Implementation</u>:
+
+1. **(2.2.1) Series List**
+
+-   **Route**: `/series`
+-   **Tabs Layout**:
+    -   Use a `<Tabs>` or `<SegmentedControl>` UI component at the top.
+    -   Default tab: **All Series**.
+    -   Other tabs: **Collections**, **Tags**, and **Categories**.
+-   **All Series Tab**:
+    -   **Layout**:
+        -   A dedicated **FilterBar** or header section with the user’s chosen Sort + Filters + Search input.
+        -   Series displayed in a **CardGrid** or table, using custom UI components (not raw `<div>`/`<span>`).
+    -   **Data**:
+        -   Fetch the full series list from the backend using SWR or React Query.
+        -   Apply filters, sorting, and search either client-side or server-side (depending on performance needs).
+    -   **UI/UX**:
+        -   Each item shows poster, name, watch status (icon/badge), subtitle status, Plex sync state, etc.
+        -   Clicking a series leads to `/series/[id]` (Single-Series Detail).
+        -   If no series match, display “No series found.”
+-   **Collections / Tags / Categories Tabs**:
+    -   For now, each is a **placeholder** with minimal or no data. Possibly fetch any existing definitions from the backend if you have endpoints available. Otherwise, just display “Coming soon” or dummy data.
+    -   In the future, each tab will have its own filtering, creation, editing, or linking UI.
+-   **Navigation**:
+    -   Add a main nav link labeled “Series,” which takes the user to `/series`.
+    -   Possibly allow direct linking to a particular tab, e.g. `/series?tab=collections`.
+-   **Future Enhancements**:
+    -   Build out full Collections, Tags, and Categories management in these respective tabs.
+    -   Bulk actions (mark multiple series, remove multiple series).
+    -   Infinite scroll or pagination for large libraries.
+
+2. **(2.2.2) Single-Series Detail**
+
+    - **Route**: `/series/[id]`
+    - **Layout**:
+        - **Header Section**: Series poster, name, watch status, subtitle status, etc.
+        - **Seasons & Episodes**:
+            - Possibly a collapsible structure (Season 1, Season 2, etc.).
+            - Each episode shows watch status, subtitle status, and an action button to mark it watched or manage subs.
+        - **Tags/Labels**: Show any assigned tags (like “Telenovela,” “Japanese,” “Marvel,” etc.) with an option to add/remove tags.
+    - **Data**:
+        - Fetch detailed series info (title, seasons, episodes, statuses) from the backend.
+        - Potentially fetch Plex info if linked, TheTVDB info for missing data, etc.
+    - **UI/UX**:
+        - Provide quick actions: “Mark season watched,” “Add subtitles,” “Link to Plex,” etc.
+        - Indicate missing episodes or missing subs in a prominent way.
+    - **Error/Empty Handling**:
+        - If the series doesn’t exist or has no data, display a friendly message (“Series not found.”).
+
+3. **Navigation & Integration**
+
+    - Add “Series” link to the top-level navigation (like “Dashboard,” “Series,” “Settings”).
+    - Ensure the **Dashboard** page can link directly to `/series` (the list) or `/series/[id]` (a specific series).
+
+4. **(Future Enhancements)**
+    - Sorting by date added, name, or next aired episode.
+    - Bulk actions for multiple series at once.
+    - Advanced filtering by tags, missing episodes, or release year.
+    - Pagination or infinite scroll if the tracked series list gets very large.
+
+#### **2.3** Create Episode Page
 
     -   Display episode details
     -   Reflect subtitle and status info
 
--   **2.4** Create Settings Page
+#### **2.4** Create Settings Page
 
     -   Add form for Plex/OpenSubtitles token management
     -   Add sync toggle
 
--   **2.5** Create Manage Paths Page
+#### **2.5** Create Manage Paths Page
 
     -   Allow user to add/edit/remove paths
     -   Display path status
 
--   **2.6** Create Scanner Page
+#### **2.6** Create Scanner Page
+
     -   Trigger filesystem scan
     -   Show scan status and detected series
 
