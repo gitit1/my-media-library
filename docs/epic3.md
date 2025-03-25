@@ -220,25 +220,80 @@ Develop a robust and intuitive user interface for managing series, episodes, sub
     - Advanced filtering by tags, missing episodes, or release year.
     - Pagination or infinite scroll if the tracked series list gets very large.
 
-#### **2.3** Create Episode Page
+#### **2.3 – Create Single-Series and Episode Page**
 
-    -   Display episode details
-    -   Reflect subtitle and status info
+##### <u>Features</u>:
 
-#### **2.4** Create Settings Page
+-   **Single-Series View:**
+
+    -   Display full series details:
+        -   Poster, description, watch status, subtitle status, Plex sync status, etc.
+        -   Display available seasons with collapsible episode listings.
+        -   Allow editing of watch/subtitle status from this view.
+        -   Quick actions (mark all episodes watched, rescan, etc.).
+
+-   **Episode View:**
+
+    -   Display detailed info for an episode:
+        -   Episode name, number, air date, runtime, and description.
+        -   Subtitle availability and status.
+    -   Quick actions (mark as watched, download subtitles, etc.).
+
+-   **Navigation:**
+    -   Clicking on a series from the Saved Series Page → Opens the Single-Series Page.
+    -   Clicking on an episode → Opens the Episode Page.
+
+#### **2.4 – Create Add Series Page**
+
+A dedicated page for searching TheTVDB and adding new series.
+
+##### <u>Features</u>:
+
+-   **Search:**
+    -   Search by series name (initially).
+    -   Display search results in a list/grid format.
+    -   Include poster, description, year, and network info.
+-   **Confirmation:**
+    -   Allow user to confirm or decline a match.
+    -   If confirmed, prompt the user to select a filesystem location.
+    -   Save the match to the database.
+-   **Future Enhancements:**
+    -   Expand search options (actor, keywords, year).
+    -   Add error handling for failed searches.
+
+#### **2.5 – Create Settings Page**
 
     -   Add form for Plex/OpenSubtitles token management
     -   Add sync toggle
 
-#### **2.5** Create Manage Paths Page
+#### **2.6** Create Manage Paths Page
 
     -   Allow user to add/edit/remove paths
     -   Display path status
 
-#### **2.6** Create Scanner Page
+#### **2.7** Create Scanner Page
 
     -   Trigger filesystem scan
     -   Show scan status and detected series
+
+#### **2.8 – Create Statistics Page**
+
+-   Display overall statistics:
+    -   Total number of series, missing episodes, missing subtitles.
+    -   Percentage of series with Plex sync.
+-   Future: Add charts/graphs for breakdown.
+
+#### **2.9 – Create Unmatched Series Page**
+
+-   List series that failed to match TheTVDB.
+-   Allow manual match attempts.
+-   Display series name, file path, and attempted match.
+
+#### **2.10 – Create Notifications Page**
+
+-   Display notifications (missing episodes, new episodes, etc.).
+-   Allow marking notifications as read.
+-   Quick actions for rescan or linking.
 
 ---
 
