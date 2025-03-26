@@ -96,53 +96,55 @@ Develop a robust and intuitive user interface for managing series, episodes, sub
 
 ###### Tabs Overview
 
-1. **All Series**
+1.  **All Series**
 
-    - The main tab listing every tracked series in a grid/list/table, similar to Plex’s layout.
-    - **Sort By** (user can pick any of the following):
-        - Series status (Ended/Running)
-        - Series type
-        - Title (default)
-        - Year
-        - Release date
-        - Unwatched
-        - Last episode date added
-        - Series date added
-        - Series date viewed
-        - Random
-    - **Filters**:
-        - Watch status (Watching, Need to Continue, etc.)
-        - Subtitle status (With, Without, Mixed)
-        - Plex sync status
-        - Series type
-        - Series data (genre, year)
-        - Series status (ended/running)
-        - Tags
-        - Collections
-    - **Search**:
-        - For now, search by series name.
-        - (Future) Expand to actor, year, keywords, etc.
-    - If no series are tracked, display “No series tracked yet.”
-    - Clicking on a series navigates to **/series/[id]** for the Single-Series Detail page.
+        - The main tab listing every tracked series in a grid/list/table, similar to Plex’s layout.
+        - **Sort By** (user can pick any of the following):
+            - Series status (Ended/Running)
+            - Series type
+            - Title (default)
+            - Year
+            - Release date
+            - Unwatched
+            - Last episode date added
+            - Series date added
+            - Series date viewed
+            - Random
+        - **Filters**:
+            - Watch status (Watching, Need to Continue, etc.)
+            - Subtitle status (With, Without, Mixed)
+            - Plex sync status
+            - Series type
+            - Series data (genre, year)
+            - Series status (ended/running)
+            - Tags
+            - Collections
+        - **Search**:
+            - For now, search by series name.
+            - (Future) Expand to actor, year, keywords, etc.
+        - If no series are tracked, display “No series tracked yet.”
+        - Clicking on a series navigates to **/series/[id]** for the Single-Series Detail page.
 
-2. **Collections**
+    > Tags and Collections can also be managed directly under `/meta/` pages for full CRUD access.
 
-    - Placeholder tab for now.
-    - Eventually will list all user-defined collections (e.g. “Marvel Shows,” “Anime Collection”).
-    - Each collection might link to a filtered view of the “All Series” tab or open a dedicated page.
-    - For now, can show a “Coming soon” message or minimal info.
+2.  **Collections**
 
-3. **Tags**
+    -   Placeholder tab for now.
+    -   Eventually will list all user-defined collections (e.g. “Marvel Shows,” “Anime Collection”).
+    -   Each collection might link to a filtered view of the “All Series” tab or open a dedicated page.
+    -   For now, can show a “Coming soon” message or minimal info.
 
-    - Another placeholder tab.
-    - Eventually displays a list of available tags (like “Telenovela,” “For Kids,” etc.).
-    - Each tag could link to a filtered list of the All Series tab or open a separate page.
-    - For now, just a placeholder.
+3.  **Tags**
 
-4. **Categories**
-    - Also a placeholder for custom user categories, or a higher-level classification of shows.
-    - Similar to tags, but might be broader or predefined.
-    - For now, show minimal info or “Coming soon.”
+    -   Another placeholder tab.
+    -   Eventually displays a list of available tags (like “Telenovela,” “For Kids,” etc.).
+    -   Each tag could link to a filtered list of the All Series tab or open a separate page.
+    -   For now, just a placeholder.
+
+4.  **Categories**
+    -   Also a placeholder for custom user categories, or a higher-level classification of shows.
+    -   Similar to tags, but might be broader or predefined.
+    -   For now, show minimal info or “Coming soon.”
 
 -   **Single-Series Detail (2.2.2)**
     -   **Route**: `/series/[id]`
@@ -283,17 +285,43 @@ A dedicated page for searching TheTVDB and adding new series.
     -   Percentage of series with Plex sync.
 -   Future: Add charts/graphs for breakdown.
 
-#### **2.9 – Create Unmatched Series Page**
+#### **2.9 – Create Unmatched Series Page and confirm page**
 
--   List series that failed to match TheTVDB.
--   Allow manual match attempts.
--   Display series name, file path, and attempted match.
+**Unmatched Series Page** (`/series/actions/unmatched`)
+
+-   List series that were discovered during filesystem scanning but could **not** be automatically matched with TheTVDB.
+-   Display extracted folder name and file path.
+-   Show previously attempted matches (if available).
+-   Allow manual search to retry match with TheTVDB.
+-   Allow user to ignore or delete unmatched series.
+-   Future: bulk rescan unmatched folders.
+
+**Confirm Page** (`/series/actions/confirm`)
+
+-   Used after a scan where matches **were** found, but need user confirmation.
+-   Display a list of scanned series with suggested TheTVDB matches.
+-   Show original folder name, match confidence, and poster/image.
+-   Allow user to:
+    -   Confirm the correct match
+    -   Reject or rematch
+    -   Skip for now
+-   After confirmation, trigger filesystem mapping and save series to the database.
 
 #### **2.10 – Create Notifications Page**
 
--   Display notifications (missing episodes, new episodes, etc.).
--   Allow marking notifications as read.
--   Quick actions for rescan or linking.
+-   Display global notifications in a standalone page at `/meta/notifications`.
+-   **Notification Types:**
+    -   Missing episodes
+    -   New episodes available
+    -   Missing subtitles
+    -   Series status changes
+-   **Features:**
+    -   View list of notifications
+    -   Quick actions (e.g. rescan, open series, mark as read)
+    -   Group notifications by type or severity
+-   **Future Enhancements:**
+    -   Add bulk actions
+    -   Notification badges in top navigation
 
 ---
 

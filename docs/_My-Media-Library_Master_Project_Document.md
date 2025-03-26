@@ -23,31 +23,44 @@ It integrates with Plex, TheTVDB, and OpenSubtitles to provide a seamless experi
 
 ```bash
 my-media-library/
-├── client/               # Next.js Frontend
+├── client/
 │   └── src/
-│       ├── app/          # Pages (Next.js App Router)
+│       ├── app/
 │       │   ├── pages/
-│       │   │   ├── series/       # Series-based pages
-│       │   │   │   ├── add/          # Add new series
-│       │   │   │   ├── dashboard/    # Series dashboard
-│       │   │   │   ├── confirm/      # Confirm match
-│       │   │   │   ├── saved/        # Saved series list
-│       │   │   │   ├── scanner/      # Scanner page
-│       │   │   │   └── unmatched/    # Unmatched series
-│       │   │   └── settings/     # Settings pages
-│       │   │       ├── paths/        # Manage file paths
-│       │   │       │   └── page.tsx  # Paths management page
-│       │   │       ├── tags/        # Manage user series tags/label
-│       │   │       │   └── page.tsx  # Tags management page
-│       │   │       ├── collections/  # Manage user series collections
-│       │   │       │   └── page.tsx  # Collections management page
-│       │   │       └── page.tsx      # Main settings page
-│       │   └── shared/           # Shared UI components (Button, Modal, Card, etc.)
-│       ├── components/           # Extra UI components
-│       ├── services/             # API integrations
-│       ├── hooks/                # React hooks (data fetching, state)
-│       ├── types/                # TypeScript types
-│       └── utils/                # Utility functions
+│       │   │   ├── dashboard/
+│       │   │   │   └── page.tsx                  # ✅Homepage
+│       │   │   ├── series/
+│       │   │   │   ├── actions/
+│       │   │   │   │   ├── add/
+│       │   │   │   │   │   └── page.tsx
+│       │   │   │   │   ├── confirm/
+│       │   │   │   │   │   └── page.tsx
+│       │   │   │   │   ├── scanner/
+│       │   │   │   │   │   └── page.tsx
+│       │   │   │   │   └── unmatched/
+│       │   │   │   │       └── page.tsx
+│       │   │   │   ├── views/
+│       │   │   │   │   ├── saved/
+│       │   │   │   │   │   └── page.tsx
+│       │   │   │   │   ├── statistics/
+│       │   │   │   │   │   └── page.tsx
+│       │   │   │   │   └── [id]/
+│       │   │   │   │       ├── page.tsx
+│       │   │   │   │       └── [episode]/
+│       │   │   │   │           └── page.tsx
+│       │   │   ├── meta/
+│       │   │   │   ├── tags/
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── collections/
+│       │   │   │   │   └── page.tsx
+│       │   │   │   ├── types/
+│       │   │   │   │   └── page.tsx
+│       │   │   │   └── notifications/
+│       │   │   │       └── page.tsx
+│       │   │   └── settings/
+│       │   │       ├── page.tsx
+│       │   │       ├── paths/
+│       │   │       │   └── page.tsx
 │
 ├── server/               # NestJS Backend
 │   └── src/
@@ -114,6 +127,7 @@ my-media-library/
 -   **UI Implementation Note:**
     -   Collections will be implemented as a dedicated tab within the Saved Series page, with basic CRUD (add, edit, delete) operations.
     -   Users can filter collections by type.
+    -   These pages are available in `/meta/collections`, `/meta/tags`, and `/meta/types` (if separated).
 
 ---
 
@@ -138,6 +152,27 @@ my-media-library/
 -   Collections and Types should be tightly integrated into the metadata system, with collection types and series types used for filtering and organizing series in the app.
 -   Collections and types should sync with Plex where applicable.
 -   Franchise and World should be stored but not displayed directly in the dashboard.
+
+---
+
+## 🔔 Notifications
+
+-   Notifications are stored and displayed via a dedicated UI page: `/meta/notifications`
+-   They include:
+    -   Missing episodes
+    -   Missing subtitles
+    -   New episodes available
+    -   Series status updates (e.g. ended/running)
+-   Each notification includes:
+    -   Type (missing episode, subtitle, etc.)
+    -   Affected series or episode
+    -   Quick actions (e.g., mark read, rescan, open series)
+-   Future:
+    -   Grouping by type
+    -   Severity indicators
+    -   Automatic removal on resolve
+
+---
 
 ### Adding Series
 
