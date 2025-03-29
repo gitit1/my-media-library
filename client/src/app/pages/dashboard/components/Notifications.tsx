@@ -1,29 +1,12 @@
 'use client';
 
 import React from 'react';
-import Container from '@/app/shared/ui/Container';
-import Typography from '@/app/shared/ui/Typography';
-import Flex from '@/app/shared/ui/Flex';
+import Container from '@/app/shared/ui/layout/Container';
+import Typography from '@/app/shared/ui/elements/Typography';
+import Flex from '@/app/shared/ui/layout/Flex';
 import { NotificationData } from '@/types/notification';
-
-const notifications: NotificationData[] = [
-	{
-		id: 'n1',
-		type: 'missing-episode',
-		message: 'Episode 3 is missing for "My Awesome Series"',
-	},
-	{
-		id: 'n2',
-		type: 'new-sub',
-		message: 'A new subtitle is available for "Dark Matter" Episode 5',
-	},
-	{
-		id: 'n3',
-		type: 'error-path',
-		message: 'Path X: drive not found',
-	},
-	// Add more as needed to test
-];
+import { mockNotifications } from '@/mocks';
+import { FlexAlign, FlexJustify, TypographyType } from '@types';
 
 export const columnsConfig = [
 	{
@@ -47,6 +30,7 @@ export const columnsConfig = [
 ];
 
 export default function Notifications() {
+	const notifications = mockNotifications;
 	// Check if everything is empty
 	const noNotifications = !notifications.length;
 
@@ -55,10 +39,14 @@ export default function Notifications() {
 			{noNotifications ? (
 				<Typography>No new notifications.</Typography>
 			) : (
-				<Flex className="w-full" align="start" justify="start" gap={4}>
+				<Flex
+					className="w-full"
+					align={FlexAlign.Start}
+					justify={FlexJustify.Start}
+					gap={4}
+				>
 					{columnsConfig.map(
 						({ title, types, bgColor, emptyMessage }) => {
-							// Filter notifications for each column’s types
 							const columnNotifications = notifications.filter(
 								(n) => types.includes(n.type)
 							);
@@ -94,7 +82,7 @@ export function NotificationColumn({
 }: NotificationColumnProps) {
 	return (
 		<Container className={`flex-1 p-4 rounded shadow ${bgColor}`}>
-			<Typography type="h2" className="font-semibold mb-2">
+			<Typography type={TypographyType.H2} className="font-semibold mb-2">
 				{title}
 			</Typography>
 			{notifications.length === 0 ? (

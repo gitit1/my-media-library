@@ -1,14 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Card from '@/app/shared/ui/Card';
-import i18n from '@/i18n/config';
-import Flex from '@/app/shared/ui/Flex';
-import Typography from '@/app/shared/ui/Typography';
-import Container from '@/app/shared/ui/Container';
-import Button from '@/app/shared/ui/Button';
-import i18next from 'i18next';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { TypographyType } from '@types';
+import { Button, Container, Flex, Typography } from '@ui';
 
 interface Stat {
 	id: string;
@@ -206,7 +201,10 @@ export default function SummaryWidgets() {
 					key={category.name_en}
 					className="flex gap-1 mb-2 justify-start items-start w-full"
 				>
-					<Typography type="h6" className="text-md font-semibold">
+					<Typography
+						type={TypographyType.H6}
+						className="text-md font-semibold"
+					>
 						{category[`name_${i18n.language}`] || category.name_en}
 					</Typography>
 					<Container className="flex gap-2">

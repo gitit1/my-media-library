@@ -1,41 +1,46 @@
-import PageContainer from '@/app/shared/layout/PageContainer';
+'use client';
+
+import { useTranslation } from 'react-i18next';
+import { PageContainer } from '@layout';
+import { Container, Typography } from '@ui';
+import { TypographyType } from '@types';
 import HorizontalNav from './components/HorizontalNav';
-import Container from '@/app/shared/ui/Container';
 import SummaryWidgets from './components/SummaryWidgets';
-import Typography from '@/app/shared/ui/Typography';
 import Notifications from './components/Notifications';
 import SeriesTable from './components/SeriesTable';
 
 export default function DashboardPage() {
+	const { t } = useTranslation();
+
 	return (
 		<PageContainer>
 			<HorizontalNav />
 			<Container className="flex flex-1">
-				<Container className="flex-1 p-6 overflow-y-auto ">
+				<Container className="flex-1 p-6 overflow-y-auto">
 					<Container className="overflow-x-auto mb-4">
 						<Typography
-							type="h2"
+							type={TypographyType.H2}
 							className="text-xl font-semibold mb-4"
 						>
-							Notifications
+							{t('dashboard.notifications')}
 						</Typography>
 						<Notifications />
 					</Container>
 					<Container className="overflow-x-auto mb-4">
 						<Typography
-							type="h2"
+							type={TypographyType.H2}
 							className="text-xl font-semibold mb-4"
 						>
-							Summary Traking
+							{t('dashboard.traking')}
 						</Typography>
 						<SummaryWidgets />
 					</Container>
 					<Container className="overflow-x-auto mb-4">
 						<Typography
-							type="h2"
+							type={TypographyType.H2}
 							className="text-xl font-semibold mb-4"
 						>
-							Tracked Series
+							{t('dashboard.trackedSeries')}
 						</Typography>
 						<SeriesTable />
 					</Container>

@@ -8,7 +8,7 @@ export type SeriesDetails = {
 	subtitleStatus: string; // e.g. "with", "without", "partial"
 	seriesType: string; // e.g. "Telenovela", "Anime", "Cartoon"
 	summary?: string;
-	posterPath?: string;
+	poster?: string;
 	currentEpisode?: number;
 	plex_id?: string;
 	tags?: string[];

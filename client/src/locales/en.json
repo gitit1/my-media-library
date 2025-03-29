@@ -3,6 +3,9 @@
       "title": "My Media Dashboard",
       "searchPlaceholder": "Search Series...",
       "settings": "Settings",
+      "notifications": "Notifications",
+      "traking": "Traking",
+      "trackedSeries": "Tracked Series",
       "scanFilesystem": "Scan Filesystem",
       "addNewSeries": "Add New Series",
       "addNewPath": "Add New Path"
@@ -14,5 +17,20 @@
       "unmatchedSeries": "Unmatched Series",
       "statistics": "Statistics",
       "settings": "Settings"
+    },
+    "series": {
+      "allSeries": "All Series",
+      "allTrackedSeries": "All Tracked Series",
+      "title": "Title",
+      "year": "Year",
+      "seriesStatus": "Series Status",
+      "lastEpisodeAdded": "Last Episode Added"
+    },
+    "common": {
+      "sortBy": "Sort By",
+      "grid": "Grid",
+      "list": "List",
+      "table": "Table",
+      "collections": "Collections"
     }
   }

@@ -1,7 +1,5 @@
-import DashboardPage from './pages/series/dashboard/page';
-import TestPage from './pages/test/page';
+import DashboardPage from './pages/dashboard/page';
 
 export default function Home() {
-  return <DashboardPage />;
-  // return <TestPage />
+	return <DashboardPage />;
 }

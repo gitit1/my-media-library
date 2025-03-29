@@ -61,6 +61,12 @@ my-media-library/
 │       │   │       ├── page.tsx
 │       │   │       ├── paths/
 │       │   │       │   └── page.tsx
+│       │   └── shared/           # Shared UI components (Button, Modal, Card, etc.)
+│       ├── components/           # Extra UI components
+│       ├── services/             # API integrations
+│       ├── hooks/                # React hooks (data fetching, state)
+│       ├── types/                # TypeScript types
+│       └── utils/                # Utility functions
 │
 ├── server/               # NestJS Backend
 │   └── src/

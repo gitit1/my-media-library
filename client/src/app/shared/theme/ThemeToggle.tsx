@@ -1,17 +1,18 @@
 'use client';
 
-import Button from '../ui/Button';
-import { useTheme } from './ThemeProvider';
-import { Sun, Moon } from 'lucide-react';
+import { MoonIcon, SunIcon } from '@icons';
+import { useTheme } from '@theme';
+import { Theme } from '@types';
+import { Button } from '@ui';
 
 const ThemeToggle = () => {
-  const { theme, toggleTheme } = useTheme();
+	const { theme, toggleTheme } = useTheme();
 
-  return (
-    <Button onClick={toggleTheme}>
-      {theme === 'light' ? <Moon /> : <Sun />}
-    </Button>
-  );
+	return (
+		<Button onClick={toggleTheme}>
+			{theme === Theme.Light ? <MoonIcon /> : <SunIcon />}
+		</Button>
+	);
 };
 
 export default ThemeToggle;

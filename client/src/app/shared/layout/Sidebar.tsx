@@ -2,20 +2,21 @@
 
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
-import Container from '../ui/Container';
-import { useSidebar } from '../context/SidebarContext';
-import Flex from '../ui/Flex';
+import { useSidebar } from '@context';
+import { Container, Flex } from '@ui';
 
 export default function Sidebar() {
 	const { t } = useTranslation();
 	const { isSidebarOpen } = useSidebar();
 
 	const sidebarItems = [
-		{ label: 'sidebar.dashboard', path: '/pages/series/dashboard' },
-		{ label: 'sidebar.savedSeries', path: '/pages/series/saved' },
-		{ label: 'sidebar.scanner', path: '/pages/series/scanner' },
-		{ label: 'sidebar.unmatchedSeries', path: '/pages/series/unmatched' },
-		{ label: 'sidebar.statistics', path: '/pages/statistics' },
+		{ label: 'sidebar.savedSeries', path: '/pages/series/views/saved' },
+		{ label: 'sidebar.scanner', path: '/pages/series/actions/scanner' },
+		{
+			label: 'sidebar.unmatchedSeries',
+			path: '/pages/series/actions/unmatched',
+		},
+		{ label: 'sidebar.statistics', path: '/pages/views/statistics' },
 		{ label: 'sidebar.settings', path: '/pages/settings' },
 	];
 

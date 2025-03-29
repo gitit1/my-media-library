@@ -3,6 +3,9 @@
       "title": "ספריית המדיה שלי",
       "searchPlaceholder": "חפש סדרה...",
       "settings": "הגדרות",
+      "notifications": "התראות",
+      "traking": "מעקב",
+      "trackedSeries": "סדרות במעקב",
       "scanFilesystem": "סריקת קבצים",
       "addNewSeries": "הוסף סדרה חדשה",
       "addNewPath": "הוסף נתיב חדש"
@@ -14,5 +17,20 @@
       "unmatchedSeries": "סדרות ללא שיוך",
       "statistics": "סטטיסטיקות",
       "settings": "הגדרות"
+    },
+    "series": {
+      "allSeries": "כל הסדרות",
+      "allTrackedSeries": "כל הסדרות במעקב",
+      "title": "כותרת",
+      "year": "שנה",
+      "seriesStatus": "סטטוס סדרה",
+      "lastEpisodeAdded": "הפרק האחרון שנצפה"
+    },
+    "common": {
+      "sortBy": "מיין לפי",
+      "grid": "רשת",
+      "list": "רשימה",
+      "table": "טבלה",
+      "collections": "אוספים"
     }
   }
