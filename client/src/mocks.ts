@@ -11,6 +11,7 @@ export const mockSeriesData: SeriesDetails[] = [
 		watchingStatus: 'Watching',
 		subtitleStatus: 'with',
 		seriesType: 'Series',
+		year: 2015,
 		poster: 'https://static.tvtropes.org/pmwiki/pub/images/lots2s.png',
 		currentEpisode: 5,
 		seasons: [
@@ -40,6 +41,7 @@ export const mockSeriesData: SeriesDetails[] = [
 		watchingStatus: 'On Hold',
 		subtitleStatus: 'partial',
 		seriesType: 'Series',
+		year: 2024,
 		poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAcq3btSWTWKEkQfSQCQB-eFygMijdp98yccpNyB8FiRY-3CxJ',
 		currentEpisode: 10,
 		seasons: [
@@ -69,7 +71,8 @@ export const mockSeriesData: SeriesDetails[] = [
 		watchingStatus: 'Watching',
 		subtitleStatus: 'with',
 		seriesType: 'Series',
-		poster: 'The Rookie',
+		year: 2015,
+		poster: 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p15523389_b_v12_at.jpg',
 		currentEpisode: 5,
 		seasons: [
 			{

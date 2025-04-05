@@ -10,6 +10,7 @@ export type SeriesDetails = {
 	summary?: string;
 	poster?: string;
 	currentEpisode?: number;
+	year: number;
 	plex_id?: string;
 	tags?: string[];
 	genre?: string[];

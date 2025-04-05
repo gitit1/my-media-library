@@ -1,16 +1,18 @@
 'use client';
 
 import { useTranslation } from 'react-i18next';
-import { PageContainer } from '@layout';
+import { PageContainer, SeriesTable } from '@layout';
 import { Container, Typography } from '@ui';
 import { TypographyType } from '@types';
+import { mockSeriesData } from '@mocks';
 import HorizontalNav from './components/HorizontalNav';
 import SummaryWidgets from './components/SummaryWidgets';
 import Notifications from './components/Notifications';
-import SeriesTable from './components/SeriesTable';
 
 export default function DashboardPage() {
 	const { t } = useTranslation();
+
+	const seriesData = mockSeriesData;
 
 	return (
 		<PageContainer>
@@ -42,7 +44,7 @@ export default function DashboardPage() {
 						>
 							{t('dashboard.trackedSeries')}
 						</Typography>
-						<SeriesTable />
+						<SeriesTable data={seriesData} />
 					</Container>
 				</Container>
 			</Container>

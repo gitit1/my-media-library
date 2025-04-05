@@ -7,14 +7,7 @@ export { default as Table } from './layout/Table';
 // elements
 export { default as Button } from './elements/Button';
 export { default as Input } from './elements/Input';
-export {
-	Select,
-	SelectGroup,
-	SelectTrigger,
-	SelectContent,
-	SelectItem,
-	SelectValue,
-} from './elements/Select';
+export { default as Select } from './elements/Select';
 export { default as Typography } from './elements/Typography';
 
 // blocks

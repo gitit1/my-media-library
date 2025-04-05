@@ -1,98 +1,142 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { BtnSize, BtnVariant, CardsView, FlexJustify } from '@types';
 import {
-	Button,
-	Container,
-	Flex,
-	Select,
-	SelectContent,
-	SelectItem,
-	SelectTrigger,
-	SelectValue,
-} from '@ui';
+	BtnSize,
+	BtnVariant,
+	CardsView,
+	FlexAlign,
+	FlexJustify,
+} from '@/types/ui';
+import { Button, Flex, Select } from '@/app/shared/ui';
 import { GridIcon, ListIcon, TableIcon } from '@icons';
-
 interface FilterBarProps {
 	viewMode: CardsView;
 	setViewMode: (mode: CardsView) => void;
+	sortBy: string;
+	setSortBy: (value: string) => void;
+	seriesViewingState: string;
+	setSeriesViewingState: (value: string) => void;
 }
 
-export default function FilterBar({ viewMode, setViewMode }: FilterBarProps) {
+export default function FilterBar({
+	viewMode,
+	setViewMode,
+	sortBy,
+	setSortBy,
+	seriesViewingState,
+	setSeriesViewingState,
+}: FilterBarProps) {
 	const { t } = useTranslation();
-	const [sortBy, setSortBy] = useState('title');
 
 	return (
-		<Container className="mb-4">
-			<Flex gap={4} className="flex-wrap" justify={FlexJustify.Between}>
-				{/* Sort Dropdown */}
-				<Flex gap={2}>
-					<span className="text-sm font-medium">
-						{t('common.sortBy')}:
-					</span>
-					<Select value={sortBy} onValueChange={setSortBy}>
-						<SelectTrigger className="w-[180px]">
-							<SelectValue placeholder={t('common.sortBy')} />
-						</SelectTrigger>
-						<SelectContent>
-							<SelectItem value="title">
-								{t('series.title')}
-							</SelectItem>
-							<SelectItem value="year">
-								{t('series.year')}
-							</SelectItem>
-							<SelectItem value="status">
-								{t('series.seriesStatus')}
-							</SelectItem>
-							<SelectItem value="lastAdded">
-								{t('series.lastEpisodeAdded')}
-							</SelectItem>
-						</SelectContent>
-					</Select>
-				</Flex>
-
-				{/* View Mode Toggle */}
-				<Flex gap={2}>
-					<Button
-						variant={
-							viewMode === CardsView.Grid
-								? BtnVariant.Default
-								: BtnVariant.Outline
-						}
-						size={BtnSize.Small}
-						onClick={() => setViewMode(CardsView.Grid)}
-					>
-						<GridIcon className="w-4 h-4 mr-1" />
-						{t('common.grid')}
-					</Button>
-					<Button
-						variant={
-							viewMode === CardsView.List
-								? BtnVariant.Default
-								: BtnVariant.Outline
-						}
-						size={BtnSize.Small}
-						onClick={() => setViewMode(CardsView.List)}
-					>
-						<ListIcon className="w-4 h-4 mr-1" />
-						{t('common.list')}
-					</Button>
-					<Button
-						variant={
-							viewMode === CardsView.Table
-								? BtnVariant.Default
-								: BtnVariant.Outline
-						}
-						size={BtnSize.Small}
-						onClick={() => setViewMode(CardsView.Table)}
-					>
-						<TableIcon className="w-4 h-4 mr-1" />
-						{t('common.table')}
-					</Button>
-				</Flex>
+		<Flex
+			align={FlexAlign.Center}
+			justify={FlexJustify.Between}
+			gap={4}
+			className="mb-4 flex-wrap"
+		>
+			{/* Sort Dropdown */}
+			<Flex gap={2}>
+				<label className="text-sm font-medium">
+					{t('common.sortBy')}:
+				</label>
+				<Select
+					value={sortBy}
+					onChange={setSortBy}
+					options={[
+						{ value: 'title', label: t('series.title') },
+						{ value: 'year', label: t('series.year') },
+						{ value: 'status', label: t('series.seriesStatus') },
+						{
+							value: 'lastAdded',
+							label: t('series.lastEpisodeAdded'),
+						},
+					]}
+				/>
+				<label className="text-sm font-medium">
+					{t('seriesViewingState.viewingState')}:
+				</label>
+				<Select
+					value={seriesViewingState}
+					onChange={setSeriesViewingState}
+					options={[
+						{ value: 'all', label: t('seriesViewingState.all') },
+						{
+							value: 'endedWatched',
+							label: t('seriesViewingState.endedWatched'),
+						},
+						{
+							value: 'endedNtC',
+							label: t('seriesViewingState.endedNtC'),
+						},
+						{
+							value: 'endedWtW',
+							label: t('seriesViewingState.endedWtW'),
+						},
+						{
+							value: 'endedSF',
+							label: t('seriesViewingState.endedSF'),
+						},
+						{
+							value: 'runningWatching',
+							label: t('seriesViewingState.runningWatching'),
+						},
+						{
+							value: 'runningNtC',
+							label: t('seriesViewingState.runningNtC'),
+						},
+						{
+							value: 'runningWtW',
+							label: t('seriesViewingState.runningWtW'),
+						},
+						{
+							value: 'runningSF',
+							label: t('seriesViewingState.runningSF'),
+						},
+					]}
+				/>
 			</Flex>
-		</Container>
+
+			{/* View Mode Toggle */}
+			<Flex gap={2}>
+				<Button
+					variant={
+						viewMode === CardsView.Grid
+							? BtnVariant.Default
+							: BtnVariant.Outline
+					}
+					size={BtnSize.Small}
+					onClick={() => setViewMode(CardsView.Grid)}
+				>
+					<GridIcon />
+					{t('common.grid')}
+				</Button>
+				<Button
+					variant={
+						viewMode === CardsView.List
+							? BtnVariant.Default
+							: BtnVariant.Outline
+					}
+					size={BtnSize.Small}
+					onClick={() => setViewMode(CardsView.List)}
+				>
+					<ListIcon />
+					{t('common.list')}
+				</Button>
+				<Button
+					variant={
+						viewMode === CardsView.Table
+							? BtnVariant.Default
+							: BtnVariant.Outline
+					}
+					size={BtnSize.Small}
+					onClick={() => setViewMode(CardsView.Table)}
+				>
+					<TableIcon />
+					{t('common.table')}
+				</Button>
+			</Flex>
+		</Flex>
 	);
 }

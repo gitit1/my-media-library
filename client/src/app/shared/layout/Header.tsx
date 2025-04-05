@@ -11,12 +11,15 @@ import {
 	PanelLeftOpenIcon,
 	SettingsIcon,
 } from '@icons';
-import { useSidebar } from '@context';
+import { useSearch, useSidebar } from '@context';
 import { useLanguage } from '@i18n';
+import { TypographyType } from '@types';
 import ThemeToggle from '../theme/ThemeToggle';
 
 export default function Header() {
 	const { t } = useTranslation();
+	const { query: searchQuery, setQuery } = useSearch();
+
 	const { language, toggleLanguage } = useLanguage();
 	const { isSidebarOpen, toggleSidebar } = useSidebar();
 
@@ -33,7 +36,7 @@ export default function Header() {
 					</Button>
 					<Link href="/">
 						<Typography
-							type="h1"
+							type={TypographyType.H1}
 							className="cursor-pointer hover:text-gray-600 dark:hover:text-gray-300 transition leading-[64px]"
 						>
 							{t('dashboard.title')}
@@ -41,7 +44,12 @@ export default function Header() {
 					</Link>
 				</Flex>
 				<Flex gap={4}>
-					<Input placeholder={t('dashboard.searchPlaceholder')} />
+					<Input
+						type="text"
+						placeholder={t('dashboard.searchPlaceholder')}
+						value={searchQuery}
+						onChange={(e) => setQuery(e.target.value)}
+					/>
 					<ThemeToggle />
 					<Button onClick={toggleLanguage} icon={<LanguagesIcon />}>
 						{language.toUpperCase()}

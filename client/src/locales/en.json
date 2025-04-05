@@ -26,6 +26,18 @@
       "seriesStatus": "Series Status",
       "lastEpisodeAdded": "Last Episode Added"
     },
+    "seriesViewingState": {
+      "viewingState": "Viewing State",
+      "all": "All Watched/Watching",
+      "endedWatched": "Ended - Watched",
+      "endedNtC": "Ended - NtC",
+      "endedWtW": "Ended - WtW",
+      "endedSF": "Ended - SF",
+      "runningWatching": "Running - Watching",
+      "runningNtC": "Running - NtC",
+      "runningWtW": "Running - WtW",
+      "runningSF": "Running - SF"
+    },
     "common": {
       "sortBy": "Sort By",
       "grid": "Grid",
