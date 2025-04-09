@@ -1,8 +1,9 @@
 import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { TvdbController } from '@controllers';
+import { TheTVDBController } from '@controllers';
 import { Episode, MediaPath, Season, Series, Subtitle } from '@entities';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { TheTVDBService } from './services/thetvdb.service';
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
   ],
-  controllers: [TvdbController /*, other controllers*/],
+  controllers: [TheTVDBController],
+  providers: [TheTVDBService],
 })
 export class AppModule {}
