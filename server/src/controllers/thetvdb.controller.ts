@@ -1,5 +1,10 @@
-// src/controllers/tvdb.controller.ts
-import { Controller, Get, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  HttpException,
+  HttpStatus,
+} from '@nestjs/common';
 import { TheTVDBService } from '../services/thetvdb.service';
 
 @Controller('thetvdb')
@@ -8,6 +13,19 @@ export class TheTVDBController {
 
   @Get('search')
   async searchSeries(@Query('query') query: string): Promise<any> {
-    return await this.thetvdbService.searchSeries(query);
+    try {
+      const results = await this.thetvdbService.searchSeries(query);
+
+      if (!results.length) {
+        throw new HttpException('No series found', HttpStatus.NOT_FOUND);
+      }
+
+      return results;
+    } catch (error) {
+      throw new HttpException(
+        error.message || 'Internal Server Error',
+        error.status || HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
   }
 }

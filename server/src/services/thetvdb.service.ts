@@ -47,29 +47,45 @@ export class TheTVDBService {
 
     this.logger.log(`Searching for series: ${query}`);
 
-    const response = await axios.get(
-      `https://api4.thetvdb.com/v4/search?query=${encodeURIComponent(query)}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.token}`,
-          Accept: 'application/json',
+    try {
+      const response = await axios.get(
+        `https://api4.thetvdb.com/v4/search?query=${encodeURIComponent(query)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${this.token}`,
+            Accept: 'application/json',
+          },
+          httpsAgent: new (require('https').Agent)({
+            rejectUnauthorized: false,
+          }),
+          validateStatus: (status) => status < 500,
         },
-        httpsAgent: new (require('https').Agent)({
-          rejectUnauthorized: false,
-        }),
-        validateStatus: (status) => status < 500,
-      },
-    );
-
-    if (response.data?.data) {
-      this.logger.log(
-        `Found ${response.data.data.length} matches for query: "${query}"`,
       );
-    } else {
-      this.logger.warn(`No matches found for query: "${query}"`);
-    }
 
-    return response.data.data;
+      if (response.status !== 200) {
+        this.logger.warn(
+          `TheTVDB search returned status ${response.status}: ${response.data?.message}`,
+        );
+        throw new Error(response.data?.message || 'TVDB Search error');
+      }
+
+      if (response.data?.data) {
+        this.logger.log(
+          `Found ${response.data.data.length} matches for query: "${query}"`,
+        );
+        return response.data.data;
+      } else {
+        this.logger.warn(`No matches found for query: "${query}"`);
+        return [];
+      }
+    } catch (error) {
+      this.logger.error(
+        `Error searching for series "${query}": ${
+          error.response?.data?.message || error.message
+        }`,
+      );
+      throw error;
+    }
   }
 
   async getSeriesDetails(seriesId: number) {
