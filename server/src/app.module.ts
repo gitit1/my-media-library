@@ -1,6 +1,7 @@
-import { Episode, MediaPath, Season, Series, Subtitle } from '@entities';
-import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { Module } from '@nestjs/common';
+import { TvdbController } from '@controllers';
+import { Episode, MediaPath, Season, Series, Subtitle } from '@entities';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
@@ -17,5 +18,6 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       synchronize: true,
     }),
   ],
+  controllers: [TvdbController /*, other controllers*/],
 })
 export class AppModule {}
