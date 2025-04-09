@@ -14,16 +14,41 @@ export type SeriesDetails = {
 	plex_id?: string;
 	tags?: string[];
 	genre?: string[];
-	seasons?: {
-		id: number;
-		number: number;
+	seasons: {
+		seasonId: number;
+		seasonNumber: number;
+		watchedAll: boolean;
+		poster?: string;
+		description: string;
+		year: number;
+		plex_id?: string;
 		episodes: {
-			id: number;
-			number: number;
+			episodeId: number;
+			episodeNumber: number;
+			episodeTitle: string;
+			description: string;
 			filePath: string;
 			hasBuiltSubs: boolean;
 			hasExternalSubs: boolean;
 			watched: boolean;
+			airDate?: string; // optional
+			runtime?: number; // optional
+			poster?: string;
+			plex_id?: string;
 		}[];
 	}[];
 };
+
+export interface EpisodeDetails {
+	episodeId: number;
+	seriesId: number;
+	title: string;
+	episodeNumber: number;
+	seasonNumber: number;
+	description: string;
+	watched: boolean;
+	subsAvailable: boolean;
+	airDate?: string; // optional
+	runtime?: number; // optional
+	// any other fields you want
+}

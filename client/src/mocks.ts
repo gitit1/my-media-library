@@ -1,114 +1,92 @@
-import { NotificationData } from '@types';
-import { SeriesDetails } from './types/series';
+import { SeriesDetails } from '@types';
 
 export const mockSeriesData: SeriesDetails[] = [
 	{
 		id: 1,
-		thetvdb_id: 123,
-		seriesName: 'Legends of Tomorrow',
-		folder_name: 'D:/Media/Series/MyAwesomeSeries',
+		thetvdb_id: 111,
+		seriesName: 'My Cool Show',
+		folder_name: 'my-cool-show',
 		seriesStatus: 'running',
 		watchingStatus: 'Watching',
 		subtitleStatus: 'with',
-		seriesType: 'Series',
-		year: 2015,
-		poster: 'https://static.tvtropes.org/pmwiki/pub/images/lots2s.png',
-		currentEpisode: 5,
+		seriesType: 'Cartoon',
+		summary: 'An exciting cartoon series about cool adventures.',
+		poster: '/images/posters/my-cool-show.jpg',
+		currentEpisode: 1,
+		year: 2023,
+		tags: ['fun', 'cartoon'],
+		genre: ['Adventure', 'Comedy'],
 		seasons: [
 			{
-				id: 101,
-				number: 1,
+				seasonId: 101,
+				seasonNumber: 1,
+				watchedAll: false,
+				description: 'Season 1 description',
+				year: 2023,
 				episodes: [
 					{
-						id: 10101,
-						number: 1,
-						filePath: 'D:/Media/Series/MyAwesomeSeries/S01E01.mkv',
+						episodeId: 1001,
+						episodeNumber: 1,
+						episodeTitle: 'Pilot episode',
+						description: 'Pilot episode description',
+						filePath: '/my-cool-show/s01e01.mp4',
 						hasBuiltSubs: true,
 						hasExternalSubs: false,
+						watched: false,
+					},
+					{
+						episodeId: 1002,
+						episodeNumber: 2,
+						episodeTitle: 'Second episode',
+						description: 'Second episode description',
+						filePath: '/my-cool-show/s01e02.mp4',
+						hasBuiltSubs: false,
+						hasExternalSubs: true,
 						watched: true,
 					},
-					// ...
 				],
 			},
 		],
 	},
 	{
 		id: 2,
-		thetvdb_id: 456,
-		seriesName: 'High Potential',
-		folder_name: 'D:/Media/Series/DarkMatter',
+		thetvdb_id: 222,
+		seriesName: 'Another Show',
+		folder_name: 'another-show',
 		seriesStatus: 'ended',
-		watchingStatus: 'On Hold',
+		watchingStatus: 'Completed',
 		subtitleStatus: 'partial',
-		seriesType: 'Series',
-		year: 2024,
-		poster: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAcq3btSWTWKEkQfSQCQB-eFygMijdp98yccpNyB8FiRY-3CxJ',
-		currentEpisode: 10,
+		seriesType: 'Anime',
+		summary: 'A thrilling anime series with deep storylines.',
+		poster: '/images/posters/another-show.jpg',
+		currentEpisode: 12,
+		year: 2021,
+		tags: ['anime'],
+		genre: ['Action', 'Drama'],
 		seasons: [
 			{
-				id: 102,
-				number: 1,
+				seasonId: 201,
+				seasonNumber: 1,
+				watchedAll: true,
+				description: 'Season 1 of Another Show',
+				year: 2020,
 				episodes: [
 					{
-						id: 10201,
-						number: 1,
-						filePath: 'D:/Media/Series/DarkMatter/S01E01.mkv',
-						hasBuiltSubs: false,
-						hasExternalSubs: true,
-						watched: false,
-					},
-					// Possibly missing episodes => triggers orange flag
-				],
-			},
-		],
-	},
-	{
-		id: 3,
-		thetvdb_id: 123,
-		seriesName: 'The Rookie',
-		folder_name: 'D:/Media/Series/MyAwesomeSeries',
-		seriesStatus: 'running',
-		watchingStatus: 'Watching',
-		subtitleStatus: 'with',
-		seriesType: 'Series',
-		year: 2015,
-		poster: 'https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p15523389_b_v12_at.jpg',
-		currentEpisode: 5,
-		seasons: [
-			{
-				id: 101,
-				number: 1,
-				episodes: [
-					{
-						id: 10101,
-						number: 1,
-						filePath: 'D:/Media/Series/MyAwesomeSeries/S01E01.mkv',
+						episodeId: 2001,
+						episodeNumber: 1,
+						episodeTitle: 'A new beginning title',
+						description: 'A new beginning',
+						filePath: '/another-show/s01e01.mp4',
 						hasBuiltSubs: true,
-						hasExternalSubs: false,
+						hasExternalSubs: true,
 						watched: true,
+						airDate: '2020-10-10',
+						runtime: 44,
 					},
-					// ...
+					// ... more episodes
 				],
 			},
+			// ... more seasons if desired
 		],
 	},
-];
-
-export const mockNotifications: NotificationData[] = [
-	{
-		id: 'n1',
-		type: 'missing-episode',
-		message: 'Episode 3 is missing for "My Awesome Series"',
-	},
-	{
-		id: 'n2',
-		type: 'new-sub',
-		message: 'A new subtitle is available for "Dark Matter" Episode 5',
-	},
-	{
-		id: 'n3',
-		type: 'error-path',
-		message: 'Path X: drive not found',
-	},
-	// Add more as needed to test
 ];

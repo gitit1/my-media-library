@@ -1,24 +1,22 @@
 'use client';
 import React, { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { mockSeriesData } from '@mocks';
+import { SeriesDetails } from '@types';
 
 interface Episode {
+	episodeId: number;
 	episodeNumber: number;
-	title: string;
-	watched: boolean;
-	subsAvailable: boolean;
-}
-
-interface Season {
-	seasonNumber: number;
-	episodes: Episode[];
-}
-
-interface SeriesData {
-	id: number;
-	title: string;
-	posterUrl: string;
+	episodeTitle: string;
 	description: string;
-	seasons: Season[];
+	filePath: string;
+	hasBuiltSubs: boolean;
+	hasExternalSubs: boolean;
+	watched: boolean;
+	airDate?: string;
+	runtime?: number;
+	poster?: string;
+	plex_id?: string;
 }
 
 export default function SingleSeriesPage({
@@ -26,26 +24,17 @@ export default function SingleSeriesPage({
 }: {
 	params: { id: string };
 }) {
-	const [seriesData, setSeriesData] = useState<SeriesData | null>(null);
+	const [seriesData, setSeriesData] = useState<SeriesDetails | null>(null);
 	const [loading, setLoading] = useState(true);
+	const seriesId = params.id; // dynamic [id] from the URL
 
 	useEffect(() => {
-		// Replace /api/series/ with your actual backend route
-		fetch(`/api/series/${params.id}`)
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error('Series not found');
-				}
-				return res.json();
-			})
-			.then((data: SeriesData) => {
-				setSeriesData(data);
-				setLoading(false);
-			})
-			.catch((err) => {
-				console.error(err);
-				setLoading(false);
-			});
+		// No real fetch; just find in mock array
+		const seriesId = parseInt(params.id, 10);
+		const foundSeries =
+			mockSeriesData.find((s) => s.id === seriesId) || null;
+		setSeriesData(foundSeries);
+		setLoading(false);
 	}, [params.id]);
 
 	if (loading) {
@@ -75,19 +64,17 @@ export default function SingleSeriesPage({
 			<div className="flex flex-col md:flex-row gap-4 md:gap-6 mb-8">
 				{/* Poster */}
 				<img
-					src={seriesData.posterUrl}
-					alt={`${seriesData.title} Poster`}
+					src={seriesData.poster}
+					alt={`${seriesData.seriesName} Poster`}
 					className="w-48 h-auto object-cover rounded shadow"
 				/>
 				{/* Overview Text */}
 				<div className="flex flex-col justify-between">
 					<div>
 						<h1 className="text-2xl font-bold mb-2">
-							{seriesData.title}
+							{seriesData.seriesName}
 						</h1>
-						<p className="text-gray-700">
-							{seriesData.description}
-						</p>
+						<p className="text-gray-700">{seriesData.summary}</p>
 					</div>
 
 					{/* Quick Actions */}
@@ -111,7 +98,7 @@ export default function SingleSeriesPage({
 			{/* Seasons & Episodes */}
 			<div>
 				<h2 className="text-xl font-semibold mb-4">Seasons</h2>
-				{seriesData.seasons.map((season) => (
+				{seriesData.seasons?.map((season) => (
 					<div key={season.seasonNumber} className="mb-6">
 						<h3 className="text-lg font-medium mb-2">
 							Season {season.seasonNumber}
@@ -119,8 +106,9 @@ export default function SingleSeriesPage({
 						<div className="ml-4 border-l border-gray-300 pl-4">
 							{season.episodes.map((ep) => (
 								<EpisodeRow
-									key={ep.episodeNumber}
+									key={ep.episodeId}
 									seasonNumber={season.seasonNumber}
+									seriesId={seriesId}
 									episode={ep}
 								/>
 							))}
@@ -134,9 +122,11 @@ export default function SingleSeriesPage({
 
 function EpisodeRow({
 	seasonNumber,
+	seriesId,
 	episode,
 }: {
 	seasonNumber: number;
+	seriesId: string;
 	episode: Episode;
 }) {
 	const handleToggleWatch = () => {
@@ -150,12 +140,23 @@ function EpisodeRow({
 	return (
 		<div className="flex flex-col sm:flex-row sm:items-center justify-between bg-gray-50 rounded p-2 mb-2">
 			<div className="mb-1 sm:mb-0">
-				<span className="font-semibold">
-					E{episode.episodeNumber}: {episode.title}
-				</span>
+				{/* 
+          Link to Episode Page 
+          e.g. /series/123/episode/456 
+        */}
+				<Link
+					href={`/series/${seriesId}/episode/${episode.episodeId}`}
+					className="font-semibold hover:underline"
+				>
+					E{episode.episodeNumber}: {episode.episodeTitle}
+				</Link>
 				<div className="text-sm text-gray-600">
 					Watched: {episode.watched ? 'Yes' : 'No'} | Subs:{' '}
-					{episode.subsAvailable ? 'Available' : 'None'}
+					{episode.hasBuiltSubs
+						? 'Built In Subs'
+						: episode.hasExternalSubs
+						? 'External Subs'
+						: 'No Subs'}
 				</div>
 			</div>
 			<div>
