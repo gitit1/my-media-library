@@ -6,10 +6,14 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { TheTVDBService } from '../services/thetvdb.service';
+import { SeriesService } from '../services/series.service';
 
 @Controller('thetvdb')
 export class TheTVDBController {
-  constructor(private readonly thetvdbService: TheTVDBService) {}
+  constructor(
+    private readonly thetvdbService: TheTVDBService,
+    private readonly seriesService: SeriesService,
+  ) {}
 
   @Get('search')
   async searchSeries(@Query('query') query: string): Promise<any> {
@@ -20,7 +24,19 @@ export class TheTVDBController {
         throw new HttpException('No series found', HttpStatus.NOT_FOUND);
       }
 
-      return results;
+      const resultsWithConflicts = await Promise.all(
+        results.map(async (series) => {
+          const exists = await this.seriesService.findByTheTVDBId(
+            series.tvdb_id,
+          );
+          return {
+            ...series,
+            alreadyExists: !!exists,
+          };
+        }),
+      );
+
+      return resultsWithConflicts;
     } catch (error) {
       throw new HttpException(
         error.message || 'Internal Server Error',

@@ -4,6 +4,7 @@ import { TheTVDBController } from '@controllers';
 import { Episode, MediaPath, Season, Series, Subtitle } from '@entities';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TheTVDBService } from './services/thetvdb.service';
+import { SeriesService } from './services/series.service';
 
 @Module({
   imports: [
@@ -18,8 +19,9 @@ import { TheTVDBService } from './services/thetvdb.service';
       entities: [Series, Season, Episode, Subtitle, MediaPath],
       synchronize: true,
     }),
+    TypeOrmModule.forFeature([Series]),
   ],
   controllers: [TheTVDBController],
-  providers: [TheTVDBService],
+  providers: [TheTVDBService, SeriesService],
 })
 export class AppModule {}
