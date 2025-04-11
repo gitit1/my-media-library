@@ -19,26 +19,35 @@ export class Episode {
   @Column()
   seriesId: number;
 
+  @Column()
+  seasonId: number;
+
   @ManyToOne(() => Season, (season) => season.episodes, { onDelete: 'CASCADE' })
   season: Season;
 
   @Column()
   episodeNumber: number;
 
-  @Column({ nullable: true })
-  name: string;
+  @Column('jsonb', { nullable: true })
+  name: {
+    en: string;
+    heb: string;
+  };
 
-  @Column({ nullable: true, type: 'text' })
-  summary: string;
+  @Column('jsonb', { nullable: true })
+  summary: {
+    en: string;
+    heb: string;
+  };
 
   @Column({ nullable: true })
-  airDate: Date;
+  airDate: string;
 
   @Column({ nullable: true })
   filePath: string;
 
-  @Column({ nullable: true })
-  posterPath: string;
+  @Column('text', { array: true, nullable: true })
+  posters: string[];
 
   @Column({ nullable: true })
   plex_id: string;
@@ -54,5 +63,4 @@ export class Episode {
 
   @OneToMany(() => Subtitle, (subtitle) => subtitle.episode)
   subtitles: Subtitle[];
-  number: any;
 }
