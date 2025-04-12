@@ -14,13 +14,13 @@ export default function HorizontalNav() {
 			justify={FlexJustify.Start}
 			className="px-6 py-3 bg-gray-100 dark:bg-gray-800 shadow-sm"
 		>
-			<Button onClick={() => router.push('/pages/series/scanner')}>
+			<Button onClick={() => router.push('/series/scanner')}>
 				{t('dashboard.scanFilesystem')}
 			</Button>
-			<Button onClick={() => router.push('/pages/series/add')}>
+			<Button onClick={() => router.push('/series/add')}>
 				{t('dashboard.addNewSeries')}
 			</Button>
-			<Button onClick={() => router.push('/pages/settings/paths')}>
+			<Button onClick={() => router.push('/settings/paths')}>
 				{t('dashboard.addNewPath')}
 			</Button>
 		</Flex>

@@ -9,12 +9,15 @@ export type SeriesDetails = {
 	seriesType: string; // e.g. "Telenovela", "Anime", "Cartoon"
 	summary?: string;
 	poster?: string;
+	icon?: string;
+	banner?: string;
+	currentSeason?: number;
 	currentEpisode?: number;
 	year: number;
 	plex_id?: string;
 	tags?: string[];
 	genre?: string[];
-	seasons: {
+	seasons?: {
 		seasonId: number;
 		seasonNumber: number;
 		watchedAll: boolean;

@@ -15,6 +15,7 @@ interface ButtonProps {
 	href?: string;
 	variant?: BtnVariant;
 	size?: BtnSize;
+	disabled?: boolean;
 }
 
 const Button = ({
@@ -27,6 +28,7 @@ const Button = ({
 	style,
 	variant = BtnVariant.Default,
 	size,
+	disabled = false,
 }: ButtonProps) => {
 	const { theme } = useTheme();
 
@@ -77,6 +79,7 @@ const Button = ({
 				onClick={onClick}
 				className={`inline-block ${buttonClasses}`}
 				style={style}
+				disabled={disabled}
 			>
 				{buttonContent}
 			</button>

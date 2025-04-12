@@ -13,6 +13,7 @@
     "sidebar": {
       "dashboard": "Dashboard",
       "savedSeries": "Saved Series",
+      "addSeries": "Add Series",
       "scanner": "Scanner",
       "unmatchedSeries": "Unmatched Series",
       "statistics": "Statistics",
@@ -24,7 +25,9 @@
       "title": "Title",
       "year": "Year",
       "seriesStatus": "Series Status",
-      "lastEpisodeAdded": "Last Episode Added"
+      "lastEpisodeAdded": "Last Episode Added",
+      "addNewSeries": "Add a New Series",
+      "search": "Search for a series..."
     },
     "seriesViewingState": {
       "viewingState": "Viewing State",
@@ -43,6 +46,8 @@
       "grid": "Grid",
       "list": "List",
       "table": "Table",
-      "collections": "Collections"
+      "collections": "Collections",
+      "searching": "Searching...",
+      "search": "Search"
     }
   }

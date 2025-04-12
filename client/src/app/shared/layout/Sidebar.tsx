@@ -10,7 +10,8 @@ export default function Sidebar() {
 	const { isSidebarOpen } = useSidebar();
 
 	const sidebarItems = [
-		{ label: 'sidebar.savedSeries', path: '/pages/series/views/saved' },
+		{ label: 'sidebar.savedSeries', path: '/series/views/saved' },
+		{ label: 'sidebar.addSeries', path: '/series/views/add' },
 		{ label: 'sidebar.scanner', path: '/pages/series/actions/scanner' },
 		{
 			label: 'sidebar.unmatchedSeries',

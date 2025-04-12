@@ -1,4 +1,4 @@
-import { SeriesDetails } from '@types';
+import { NotificationData, SeriesDetails } from '@types';
 
 export const mockSeriesData: SeriesDetails[] = [
 	{
@@ -88,5 +88,95 @@ export const mockSeriesData: SeriesDetails[] = [
 			},
 			// ... more seasons if desired
 		],
+	},
+];
+
+export const mockNotifications: NotificationData[] = [
+	{
+		id: 'notif-001',
+		type: 'missing-episode',
+		message: 'Episode 5 of Season 2 is missing for "Stranger Things".',
+		additionalData: {
+			seriesId: 'st-001',
+			seriesName: 'Stranger Things',
+			seasonNum: 2,
+			episodeNum: 5,
+			pathLetter: 'D',
+			path: 'D:\\Series\\Stranger Things\\Season 2',
+		},
+		action: {
+			label: 'Rescan Folder',
+			onClick: () => {
+				console.log('Rescan folder triggered for Stranger Things S2');
+			},
+		},
+	},
+	{
+		id: 'notif-002',
+		type: 'missing-sub',
+		message: 'Subtitle is missing for Episode 8 of "Breaking Bad".',
+		additionalData: {
+			seriesName: 'Breaking Bad',
+			seasonNum: 3,
+			episodeNum: 8,
+		},
+		action: {
+			label: 'Fetch Subtitles',
+			onClick: () => {
+				console.log('Fetch subtitle triggered for Breaking Bad S3E8');
+			},
+		},
+	},
+	{
+		id: 'notif-003',
+		type: 'new-episode',
+		message: 'New episode available: "The Mandalorian" S3E1.',
+		additionalData: {
+			seriesName: 'The Mandalorian',
+			seasonNum: 3,
+			episodeNum: 1,
+		},
+		action: {
+			label: 'Open Series',
+			onClick: () => {
+				console.log('Navigate to The Mandalorian page');
+			},
+		},
+	},
+	{
+		id: 'notif-004',
+		type: 'new-sub',
+		message: 'New Hebrew subtitle found for "Dark" S2E3.',
+		additionalData: {
+			seriesName: 'Dark',
+			seasonNum: 2,
+			episodeNum: 3,
+		},
+		action: {
+			label: 'Download Subtitle',
+			onClick: () => {
+				console.log('Download subtitle for Dark S2E3');
+			},
+		},
+	},
+	{
+		id: 'notif-005',
+		type: 'error-path',
+		message: 'Path not found: E:\\Media\\Shows\\UnknownSeries.',
+		additionalData: {
+			pathLetter: 'E',
+			path: 'E:\\Media\\Shows\\UnknownSeries',
+		},
+		action: {
+			label: 'Edit Path',
+			onClick: () => {
+				console.log('Redirecting to edit path settings');
+			},
+		},
+	},
+	{
+		id: 'notif-006',
+		type: 'info',
+		message: 'Your media library is fully synced.',
 	},
 ];

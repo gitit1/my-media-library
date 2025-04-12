@@ -13,6 +13,7 @@
     "sidebar": {
       "dashboard": "לוח ראשי",
       "savedSeries": "סדרות שמורות",
+      "addSeries": "הוספת סדרות",
       "scanner": "סורק",
       "unmatchedSeries": "סדרות ללא שיוך",
       "statistics": "סטטיסטיקות",
@@ -24,13 +25,17 @@
       "title": "כותרת",
       "year": "שנה",
       "seriesStatus": "סטטוס סדרה",
-      "lastEpisodeAdded": "הפרק האחרון שנצפה"
+      "lastEpisodeAdded": "הפרק האחרון שנצפה",
+      "addNewSeries": "הוסף סדרה חדשה",
+      "search": "חפש סדרה"
     },
     "common": {
       "sortBy": "מיין לפי",
       "grid": "רשת",
       "list": "רשימה",
       "table": "טבלה",
-      "collections": "אוספים"
+      "collections": "אוספים",
+      "searching": "מחפש...",
+      "search": "חיפוש"
     }
   }

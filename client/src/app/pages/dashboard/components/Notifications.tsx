@@ -4,11 +4,15 @@ import React from 'react';
 import Container from '@/app/shared/ui/layout/Container';
 import Typography from '@/app/shared/ui/elements/Typography';
 import Flex from '@/app/shared/ui/layout/Flex';
-import { NotificationData } from '@/types/notification';
 import { mockNotifications } from '@/mocks';
-import { FlexAlign, FlexJustify, TypographyType } from '@types';
+import {
+	FlexAlign,
+	FlexJustify,
+	NotificationData,
+	TypographyType,
+} from '@types';
 
-export const columnsConfig = [
+const columnsConfig = [
 	{
 		title: 'Episodes',
 		types: ['missing-episode', 'new-episode'],
