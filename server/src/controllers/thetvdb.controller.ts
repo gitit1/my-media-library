@@ -4,6 +4,7 @@ import {
   Query,
   HttpException,
   HttpStatus,
+  Param,
 } from '@nestjs/common';
 import { TheTVDBService } from '../services/thetvdb.service';
 import { SeriesService } from '../services/series.service';
@@ -43,5 +44,15 @@ export class TheTVDBController {
         error.status || HttpStatus.INTERNAL_SERVER_ERROR,
       );
     }
+  }
+
+  @Get('extended/:id')
+  async getExtended(@Param('id') id: number) {
+    return this.thetvdbService.getExtendedSeriesDetails(id);
+  }
+
+  @Get('extendedSeason/:id')
+  async getSeasonEpisodes(@Param('id') id: number) {
+    return this.thetvdbService.getSeasonEpisodes(id);
   }
 }

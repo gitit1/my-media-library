@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
-import { FlexAlign, FlexJustify } from '@types';
+import { FlexAlign, FlexDirection, FlexJustify } from '@types';
 
 interface FlexProps {
 	children: ReactNode;
 	className?: string;
 	align?: FlexAlign;
 	justify?: FlexJustify;
+	direction?: FlexDirection;
 	gap?: number;
 }
 
@@ -14,6 +15,7 @@ export default function Flex({
 	className = '',
 	align = FlexAlign.Center,
 	justify = FlexJustify.Between,
+	direction = FlexDirection.Row,
 	gap = 4,
 }: FlexProps) {
 	const alignClass = {
@@ -29,9 +31,11 @@ export default function Flex({
 		end: 'justify-end',
 	}[justify];
 
+	const directionClass = direction === 'col' ? 'flex-col' : 'flex-row';
+
 	return (
 		<div
-			className={`flex ${alignClass} ${justifyClass} gap-${gap} ${className}`}
+			className={`flex ${directionClass} ${alignClass} ${justifyClass} gap-${gap} ${className}`}
 		>
 			{children}
 		</div>

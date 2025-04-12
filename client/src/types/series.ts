@@ -42,6 +42,21 @@ export type SeriesDetails = {
 	}[];
 };
 
+export type ShortenedSeriesDetails = {
+	thetvdb_id: number;
+	name: {
+		en: string;
+		he: string;
+	};
+	summary: {
+		en: string;
+		he: string;
+	};
+	year: number | null;
+	poster: string;
+	alreadyExists: boolean;
+};
+
 export interface EpisodeDetails {
 	episodeId: number;
 	seriesId: number;

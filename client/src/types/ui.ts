@@ -54,3 +54,8 @@ export enum FlexJustify {
 	Start = 'start',
 	End = 'end',
 }
+
+export enum FlexDirection {
+	Row = 'row',
+	Col = 'col',
+}
