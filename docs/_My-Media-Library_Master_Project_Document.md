@@ -943,7 +943,55 @@ my-media-library/
 </details>
 
 <details>
-  <summary><strong>Epic 12: Final Cleanup & Optimization</strong></summary>
+  <summary><strong>Epic 12: Notifications System</strong></summary>
+
+**Goal:**  
+ Ensure a scalable, real-time, and modular notification system for tracking important changes and alerts across the app.
+
+**Tasks:**
+
+-   **(Backend) Define Notification Types**
+
+    -   Missing episodes
+    -   Missing subtitles
+    -   New episodes available
+    -   Sync errors (e.g., Plex or OpenSubtitles)
+    -   Series status changes (e.g., ended)
+
+-   **(Database) Create Notification Table**
+
+    -   Include type, timestamp, read status
+    -   Link to series, season, episode when relevant
+
+-   **(Backend) Trigger Notifications**
+
+    -   On episode/season mismatch
+    -   After scanner detects missing data
+    -   When new subtitle or metadata is available
+
+-   **(Client) Display Notifications in UI**
+
+    -   In `/meta/notifications` page
+    -   Show grouped by type
+    -   Include filters, severity levels, and actions (e.g., “rescan,” “open series”)
+
+-   **(Client) Real-Time Updates**
+
+    -   Optional: Use polling or WebSocket layer for real-time notifications
+
+-   **(Client) Dismiss / Mark as Read**
+    -   UI interaction to dismiss or mark notifications as read
+
+**Status:**  
+ ⏳ Planned
+
+**Notes:**  
+ This epic replaces the older cleanup epic. All cleanup work is moved to Epic 13.
+
+</details>
+
+<details>
+  <summary><strong>Epic 13: Final Cleanup & Optimization</strong></summary>
 
 **Goal:**  
  Improve system stability, performance, and maintainability.
@@ -1002,7 +1050,52 @@ my-media-library/
 </details>
 
 <details>
-  <summary><strong>Epic 13: Stretch Goals</strong></summary>
+  <summary><strong>Epic 14: Make App Installable as Local Software</strong></summary>
+
+**Goal:**  
+ Turn My-Media-Library into a standalone desktop/web app that users can run on their own machines with local configuration.
+
+**Tasks:**
+
+-   **(DevOps) Versioning Support**
+
+    -   Tag versions via Git (v1.0.0, v1.1.0, etc.)
+    -   Prepare GitHub releases with changelogs
+
+-   **(Client) Local Settings Page**
+
+    -   Displayed automatically at first run
+    -   User sets base paths, default language, subtitle preferences
+    -   Store config in `.local.json` or DB settings table
+
+-   **(Client) Local-Only Mode**
+
+    -   Allow running without Plex or external APIs
+    -   Only filesystem + manual input
+
+-   **(Backend) Local DB Setup**
+
+    -   Use SQLite or PostgreSQL local mode
+    -   Allow user to bootstrap DB on first run
+
+-   **(Backend) Configurable `.env` Generator**
+
+    -   Guide user through `.env` creation wizard on first launch
+
+-   **(Optional) Package Electron Wrapper**
+    -   Wrap app with Electron or Tauri to run as a desktop app
+    -   Create platform-specific builds (Windows/Mac/Linux)
+
+**Status:**  
+ ⏳ Planned
+
+**Notes:**  
+ This epic prepares the project to be used by non-technical users as a standalone application.
+
+</details>
+
+<details>
+  <summary><strong>Epic 15: Stretch Goals</strong></summary>
 
 **Goal:**  
  Add optional enhancements to improve the user experience and expand functionality.

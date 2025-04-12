@@ -1,15 +1,19 @@
-# Epic 13: Stretch Goals
+# Epic 13: Final Cleanup & Optimization
 
-## 🎯 Goal  
-Add optional enhancements to improve the user experience and expand functionality.
+## 🎯 Goal
 
-## ✅ Tasks  
-- Add streaming and transcoding support.  
-- Create multi-user profiles.  
-- Add recommendation engine based on viewing history.  
+Improve system stability, performance, and maintainability.
 
-## 🏆 Status  
-⏳ Planned  
+## ✅ Tasks
 
-## 📝 Notes  
-Stretch goals are not essential for initial release but provide long-term value.
+-   Improve error handling across services.
+-   Optimize filesystem scan and metadata sync.
+-   Remove unused imports and simplify code structure.
+
+## 🏆 Status
+
+⏳ Planned
+
+## 📝 Notes
+
+Final cleanup will ensure the system is stable and performant.
