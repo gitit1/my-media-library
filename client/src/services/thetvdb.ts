@@ -9,3 +9,9 @@ export const searchSeries = async (query: string) => {
 
 	return response.data;
 };
+
+export const getExtendedSeries = async (id: number) => {
+	const response = await axios.get(`${API_BASE_URL}/thetvdb/extended/${id}`);
+
+	return response.data;
+};

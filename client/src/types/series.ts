@@ -3,12 +3,15 @@ export type SeriesDetails = {
 	thetvdb_id: number;
 	seriesName: string; // Renamed from "name"
 	folder_name: string;
-	seriesStatus: string; // e.g. "running", "ended"
+	status: string; // e.g. "running", "ended"
 	watchingStatus: string; // e.g. "Watching", "Completed", "On Hold"
 	subtitleStatus: string; // e.g. "with", "without", "partial"
 	seriesType: string; // e.g. "Telenovela", "Anime", "Cartoon"
 	summary?: string;
 	poster?: string;
+	posters?: string[];
+	banners?: string[];
+	icons?: string[];
 	icon?: string;
 	banner?: string;
 	currentSeason?: number;
@@ -54,6 +57,7 @@ export type ShortenedSeriesDetails = {
 	};
 	year: number | null;
 	poster: string;
+	status: string;
 	alreadyExists: boolean;
 };
 

@@ -99,6 +99,7 @@ export class TheTVDBService {
               },
               year: item.year || null,
               poster: item.image_url || '', // or pick a default artwork if available later
+              status: item.status || '',
               alreadyExists: !!exists,
             };
           }),
@@ -220,9 +221,10 @@ export class TheTVDBService {
           data.artworks?.filter(
             (a: any) => a.type === 'clear' || a.type === 'icon',
           ) || [],
-
         seasons: enrichedSeasons,
       };
+
+      // Full response (if full === true)
     } catch (error) {
       const status = error.response?.status;
       const message = error.response?.data?.message || error.message;

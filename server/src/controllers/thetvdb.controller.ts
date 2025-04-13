@@ -47,8 +47,8 @@ export class TheTVDBController {
   }
 
   @Get('extended/:id')
-  async getExtended(@Param('id') id: number) {
-    return this.thetvdbService.getExtendedSeriesDetails(id);
+  async getExtendedSeries(@Param('id') id: string) {
+    return this.thetvdbService.getExtendedSeriesDetails(parseInt(id));
   }
 
   @Get('extendedSeason/:id')

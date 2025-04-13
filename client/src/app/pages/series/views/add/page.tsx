@@ -48,17 +48,18 @@ export default function AddSeriesPage() {
 			try {
 				const data = await searchSeries(query);
 
-				const mapped = data.map((item: ShortenedSeriesDetails) => ({
-					thetvdb_id: item.thetvdb_id,
-					name: item.name,
-					summary: item.summary,
-					year: item.year ?? null,
-					poster: item.poster || '',
-					alreadyExists: item.alreadyExists ?? false,
-				}));
+				// const mapped = data.map((item: ShortenedSeriesDetails) => ({
+				// 	thetvdb_id: item.thetvdb_id,
+				// 	name: item.name,
+				// 	summary: item.summary,
+				// 	summary: item.summary,
+				// 	year: item.year ?? null,
+				// 	poster: item.poster || '',
+				// 	alreadyExists: item.alreadyExists ?? false,
+				// }));
 
-				setRawResults(mapped);
-				setResults(mapped);
+				setRawResults(data);
+				setResults(data);
 			} catch (e) {
 				console.error(e);
 			} finally {
