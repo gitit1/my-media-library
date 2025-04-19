@@ -552,121 +552,92 @@ my-media-library/
 </details>
 
 <details>
-  <summary><strong>Epic 6: Manual Data Input & Database</strong></summary>
+  <summary><strong>Epic 6: Manual Series Add & Confirmation Flow</strong></summary>
 
 **Goal:**  
- Allow users to manually enter and manage series data and store it in the database.
+Let the user manually search and select a series from TheTVDB, choose artwork and settings, confirm metadata, and save the full series structure (series → seasons → episodes) to the database. This includes building the **Series Page UI (tabbed layout)** in “mini mode” for confirmation before saving.
 
 **Tasks:**
 
--   **(Client) Create Series Search UI**
+-   **Search Series from TVDB**
 
-    -   Create search field to look up series using TheTVDB.
-    -   Display possible matches and allow the user to confirm a match.
+    -   Search and preview extended metadata
+    -   Select poster/banner/icon
 
--   **(Server) Handle Series Search with TheTVDB**
+-   **Open Confirmation UI (Mini Series Page)**
 
-    -   Create backend route to search TheTVDB using user input.
-    -   Return a list of possible matches to the client.
+    -   Tabbed layout: Save Series / General / Season X
+    -   Choose path, subtitle/watching status, favorite
+    -   Mark all watched, select artwork
+    -   View episodes (read-only)
 
--   **(Client) Ask for Filesystem Location**
+-   **Save to Database**
 
-    -   After confirming a match → Prompt the user to select the filesystem location.
-    -   Save the selected path.
+    -   Save Series, Seasons, Episodes
+    -   Save status, artwork, and subtitle info
 
--   **(Server) Save Metadata to Database**
+-   **Trigger Filesystem + Scanner**
 
-    -   Save full metadata (series, seasons, and episodes) to the database after confirmation.
-    -   Handle conflicts if series already exists.
+    -   Create folders if needed
+    -   Trigger scan + poster download
 
--   **(Client) Trigger Filesystem Scan**
+-   **Ask About Plex Link**
 
-    -   After saving metadata → Trigger filesystem scan for missing episodes.
-    -   Display scan status to the user.
+    -   Ask user if linked to Plex
+    -   Save Plex status (sync happens in Epic 10)
 
--   **(Client) Ask if Linked to Plex**
-    -   After saving metadata → Ask the user if the series is already linked to Plex.
-    -   If yes → Store Plex link status (handle syncing in a separate Plex epic).
+-   **Support Virtual Series**
+    -   Save without path (virtual)
+    -   Link later and trigger scan
 
 **Status:**  
- ⏳ Planned
+⏳ Planned
 
 **Notes:**  
- This epic focuses on building the foundation for storing and managing series and episode data.
+This epic includes both UI and backend flow. The "mini series page" becomes the new default structure for confirmation and is reused as the full Series Page in Epic 7.
 
 </details>
 
 <details>
-  <summary><strong>Epic 7: Series Management</strong></summary>
+  <summary><strong>Epic 7: Series Management & Full Series Page</strong></summary>
 
 **Goal:**  
- Build the data-driven logic for managing series, episodes, and status.
+Allow users to manage their saved series, update watch/subtitle statuses, and track missing data. This expands the Series Page UI (created in Epic 6) into full view/edit mode.
 
 **Tasks:**
 
--   **(Client) Create Dashboard for Series Tracking**
+-   **Display Saved Series**
 
-    -   Display all tracked series in a central location.
-    -   Show watching status, missing episodes, and subtitle status.
-    -   Highlight missing data using color-coding.
+    -   Show all tracked series
+    -   Add filters (watching status, subs, type)
+    -   Color-code statuses
 
--   **(Server) Provide Series Data**
+-   **Build Full Series Page (`/series/[id]`)**
 
-    -   Create backend route to provide series data to the client.
-    -   Include series metadata, watch status, and subtitle status.
+    -   Expand tabbed layout into full view mode
+    -   Show General metadata tab
+    -   Show Seasons with episode lists
+    -   Allow marking episodes watched or subbed
 
--   **(Client) Add Filtering & Color-Coding**
+-   **Update Status**
 
-    -   Filter by watching status (Watching, Completed, Unwatched).
-    -   Filter by subtitle status (With, Without, Mixed).
-    -   Highlight missing data with color coding.
+    -   Toggle watch/subtitle status in list or series page
+    -   Optimistic UI updates
 
--   **(Server) Provide Filtering Logic**
+-   **Refresh Metadata**
 
-    -   Create backend route to return filtered series data.
-    -   Allow filtering by subtitle status, series status, and watch status.
+    -   Manual refresh from TheTVDB
+    -   Overwrite metadata in DB and UI
 
--   **(Client) Viewing Status Management UI**
-
-    -   Allow user to change viewing status directly from the UI.
-    -   Display icons for each watching status.
-
--   **(Server) Handle Status Updates**
-
-    -   Update the database when the user changes the viewing status.
-    -   Reflect the change in the next data sync.
-
--   **(Client) Manage Subtitle Status**
-
-    -   Track subtitle status (with, mixed, without).
-    -   Allow manual subtitle status changes.
-
--   **(Server) Handle Subtitle Status Updates**
-    -   Update the database when the subtitle status changes.
-    -   Reflect the change in the next data sync.
--   **(Server) Sync Custom Metadata**
-
-    -   If tags/labels are changed after series data sync → Update internal state.
-    -   Sync changes to Plex if Plex sync is enabled.
-
--   **(Client) Manual Metadata Refresh**
-
-    -   Allow user to manually trigger metadata refresh from TVDB or Plex.
-    -   Reflect updated data in the dashboard.
-
--   **(Server) Allow Partial Metadata Sync**
-
-    -   If metadata from Plex or TVDB is incomplete → Allow user to override specific fields.
-
--   **(Client) Display Metadata Sync Status in Dashboard**
-    -   Reflect metadata sync status in the series dashboard.
-    -   Display a success or failure state after sync.
+-   **Detect Missing Data**
+    -   Compare TheTVDB to filesystem
+    -   Show missing episode + subtitle indicators
 
 **Status:**  
- ⏳ Planned
+⏳ Planned
 
 **Notes:**  
- This epic focuses on handling series metadata and state.
+This epic uses and expands the Series Page layout. It connects all saved data with backend sync, future Plex integration, and file system logic.
 
 </details>
 

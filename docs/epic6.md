@@ -1,58 +1,88 @@
-# Epic 6: Manual Data Input & Database
+# Epic 6: Manual Series Add & Confirmation Flow
 
 ## 🎯 Goal
 
-Allow users to manually enter and manage series data and store it in the database.
+Let the user manually search and select a series from TheTVDB, choose artwork and settings, confirm metadata, and save the full series structure (series → seasons → episodes) to the database. This includes building the **Series Page UI (tabbed layout)** in “mini mode” for confirmation before saving.
 
-## 🏆 Status
+This is the first use of the new series UI that will later be reused in Epic 7.
 
-⏳ Planned
+---
 
 ## ✅ Tasks
 
-### **Task 1 – Search & Confirm Series from TheTVDB**
+### **Task 1 – Search Series from TheTVDB**
 
--   **6.1.1** Create Search UI in `/series/actions/add`
--   **6.1.2** Call `/thetvdb/search?query=...` on input
--   **6.1.3** Expand result on click with `/thetvdb/extended/:id?full=false`
--   **6.1.4** Let user select artwork (poster, banner, icon)
-
----
-
-### **Task 2 – Confirm Match & Save to Database**
-
--   **6.2.1** Call `/thetvdb/extended/:id?full=true`
--   **6.2.2** Prompt user to select filesystem path
--   **6.2.3** Send `POST /series` with full data
--   **6.2.4** Save Series + Seasons + Episodes to DB
+-   **6.1.1** Create `/series/actions/add` page
+-   **6.1.2** Add search input → call `/thetvdb/search?query=...`
+-   **6.1.3** Display results with basic metadata (name, summary, poster, year)
+-   **6.1.4** On expand → fetch `/thetvdb/extended/:id` (full)
+-   **6.1.5** Show default poster/banner/icon + current seasons
 
 ---
 
-### **Task 3 – Support Virtual Series Lifecycle**
+### **Task 2 – Open Confirmation UI ("Mini Series Page")**
 
-> Handle series that are not linked to a local folder, and allow connecting them later.
+> This UI becomes the base for the full series view in Epic 7
 
--   **6.3.1** Add `isVirtual` column to `Series` entity (`default: false`)
--   **6.3.2** Allow `pathId` to be nullable in DB schema
--   **6.3.3** Add checkbox in UI: “This series is not saved locally”
--   **6.3.4** Skip scan logic on save if `isVirtual = true`
--   **6.3.5** In Saved Series view, show “Link to Filesystem” button
--   **6.3.6** Create modal to select path
--   **6.3.7** Create `PATCH /series/:id` to update `pathId` and set `isVirtual = false`
--   **6.3.8** Trigger scanner after linking
+-   **6.2.1** Open tabbed layout in modal or route:  
+    Tabs: `Save Series` / `General` / `Season N`
+-   **6.2.2** Tab: **Save Series**
+    -   Select watching status
+    -   Subtitle status
+    -   Mark as favorite
+    -   Select file system path (or mark virtual)
+-   **6.2.3** Tab: **General**
+    -   View series metadata
+    -   Select artwork (poster/banner/icon)
+    -   Mark all seasons watched
+-   **6.2.4** Tab: **Season N**
+    -   View episodes (read-only)
+    -   Display poster
+-   **6.2.5** Support default “Quick Save” (skip modal)
 
 ---
 
-### **Task 4 – Trigger Filesystem & Scanner After Add**
+### **Task 3 – Save Series to Database**
 
-> When a new series is added (not virtual), we simulate or trigger scan logic.
-> This may include building a skeleton of folders and episode files — not just checking for missing episodes.
+-   **6.3.1** Save `series`, `seasons`, `episodes`
+-   **6.3.2** Save artwork, status, subtitle state
+-   **6.3.3** Save `isVirtual` if no path selected
 
--   **6.4.1** Trigger (stubbed) scan for new series added
--   **6.4.2** Display scan progress (stubbed placeholder)
--   **6.4.3** Redirect user to new series page
+---
+
+### **Task 4 – Trigger Filesystem & Scanner**
+
+> Only if the series is not virtual
+
+-   **6.4.1** Create missing season folders
+-   **6.4.2** Trigger scanner for new series
+-   **6.4.3** Download missing posters (series, season)
+-   **6.4.4** Display scan progress stub (UI)
+
+---
+
+### **Task 5 – Ask About Plex Link**
+
+-   **6.5.1** After save, prompt: “Is this series already linked to Plex?”
+-   **6.5.2** If yes → mark as Plex-linked (store Plex ID if known)
+-   (Full sync handled in Epic 10)
+
+---
+
+### **Task 6 – Virtual Series Linking (Later)**
+
+> If saved as virtual, allow linking it later from Saved Series
+
+-   **6.6.1** Show “Link to Filesystem” in `/series/views/saved`
+-   **6.6.2** Open modal to select path
+-   **6.6.3** `PATCH /series/:id` to update `pathId` + `isVirtual = false`
+-   **6.6.4** Trigger scanner after linking
+
+---
 
 ## 📝 Notes
 
-Manual input allows the user to override missing metadata or incomplete sync.
-Also supports tracking "virtual" series without local files.
+-   The “mini series page” here becomes the new standard for confirmation and will evolve into the full Series Page in Epic 7.
+-   No episode editing or deep interactions — just metadata preview and selection.
+-   Artwork selection, path, and status are saved here — this is the full “save flow.”
+-   Supports skipping confirmation (auto-confirm with defaults).
