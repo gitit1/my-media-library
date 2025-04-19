@@ -6,7 +6,7 @@ export const mockSeriesData: SeriesDetails[] = [
 		thetvdb_id: 111,
 		seriesName: 'My Cool Show',
 		folder_name: 'my-cool-show',
-		seriesStatus: 'running',
+		status: 'running',
 		watchingStatus: 'Watching',
 		subtitleStatus: 'with',
 		seriesType: 'Cartoon',
@@ -53,7 +53,7 @@ export const mockSeriesData: SeriesDetails[] = [
 		thetvdb_id: 222,
 		seriesName: 'Another Show',
 		folder_name: 'another-show',
-		seriesStatus: 'ended',
+		status: 'ended',
 		watchingStatus: 'Completed',
 		subtitleStatus: 'partial',
 		seriesType: 'Anime',
@@ -179,4 +179,9 @@ export const mockNotifications: NotificationData[] = [
 		type: 'info',
 		message: 'Your media library is fully synced.',
 	},
+];
+
+export const mockAvailablePaths = [
+	{ value: 'path1', label: 'E:\\Running Series' },
+	{ value: 'path2', label: 'F:\\Archived Shows' },
 ];

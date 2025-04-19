@@ -27,7 +27,13 @@
       "seriesStatus": "Series Status",
       "lastEpisodeAdded": "Last Episode Added",
       "addNewSeries": "Add a New Series",
-      "search": "Search for a series..."
+      "search": "Search for a series...",
+      "selectViewingState": "Select Viewing State",
+      "isSavedSeries": "Saved Series?",
+      "selectPath": "Select Series Path",
+      "addToFavorites": "Add to Favorites",
+      "chooseArtwork": "Choose Artwork",
+      "save": "Save Series"
     },
     "seriesViewingState": {
       "viewingState": "Viewing State",
@@ -48,6 +54,11 @@
       "table": "Table",
       "collections": "Collections",
       "searching": "Searching...",
-      "search": "Search"
+      "search": "Search",
+      "cancel": "Cancel",
+      "seasaverch": "Save",
+      "yes": "Yes",
+      "no": "No",
+      "select": "Select..."
     }
   }

@@ -35,11 +35,12 @@ export default function AddSeriesPage() {
 				const filtered = rawResults.filter((item) => {
 					const queryLower = query.toLowerCase();
 					return (
-						item.name.en.toLowerCase().includes(queryLower) ||
-						item.name.he.toLowerCase().includes(queryLower)
+						item.seriesName.en.toLowerCase().includes(queryLower) ||
+						item.seriesName.he.toLowerCase().includes(queryLower)
 					);
 				});
 				setResults(filtered);
+				console.log('filtered', filtered);
 				return;
 			}
 
@@ -47,18 +48,8 @@ export default function AddSeriesPage() {
 			setIsLoading(true);
 			try {
 				const data = await searchSeries(query);
-
-				// const mapped = data.map((item: ShortenedSeriesDetails) => ({
-				// 	thetvdb_id: item.thetvdb_id,
-				// 	name: item.name,
-				// 	summary: item.summary,
-				// 	summary: item.summary,
-				// 	year: item.year ?? null,
-				// 	poster: item.poster || '',
-				// 	alreadyExists: item.alreadyExists ?? false,
-				// }));
-
 				setRawResults(data);
+				console.log('data', data);
 				setResults(data);
 			} catch (e) {
 				console.error(e);

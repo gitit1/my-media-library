@@ -89,7 +89,7 @@ export class TheTVDBService {
 
             return {
               thetvdb_id,
-              name: {
+              seriesName: {
                 en: item.name,
                 he: item.translations?.heb || item.name,
               },

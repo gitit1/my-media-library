@@ -47,7 +47,7 @@ export type SeriesDetails = {
 
 export type ShortenedSeriesDetails = {
 	thetvdb_id: number;
-	name: {
+	seriesName: {
 		en: string;
 		he: string;
 	};
@@ -59,6 +59,25 @@ export type ShortenedSeriesDetails = {
 	poster: string;
 	status: string;
 	alreadyExists: boolean;
+};
+
+export type ExtendedSeriesDetails = {
+	thetvdb_id: number;
+	seriesName: {
+		en: string;
+		he: string;
+	};
+	summary: {
+		en: string;
+		he: string;
+	};
+	year: number | null;
+	status: string;
+	seasons: number;
+	genres: string[];
+	posters: { url: string }[];
+	banners: { url: string }[];
+	icons: { url: string }[];
 };
 
 export interface EpisodeDetails {
@@ -74,3 +93,14 @@ export interface EpisodeDetails {
 	runtime?: number; // optional
 	// any other fields you want
 }
+
+export const viewingStates = [
+	{ value: '001', label: 'Ended - Watched' },
+	{ value: '002', label: 'Ended - Need to Continue' },
+	{ value: '003', label: 'Ended - Want to Watch' },
+	{ value: '004', label: 'Ended - Stop Following' },
+	{ value: '006', label: 'Running - Watching' },
+	{ value: '007', label: 'Running - Need to Continue' },
+	{ value: '008', label: 'Running - Want to Watch' },
+	{ value: '009', label: 'Running - Stop Following' },
+];

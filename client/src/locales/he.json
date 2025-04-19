@@ -27,7 +27,25 @@
       "seriesStatus": "סטטוס סדרה",
       "lastEpisodeAdded": "הפרק האחרון שנצפה",
       "addNewSeries": "הוסף סדרה חדשה",
-      "search": "חפש סדרה"
+      "search": "חפש סדרה",
+      "selectViewingState": "בחיר סטטוס צפייה",
+      "isSavedSeries": "האם הסדרה שמורה?",
+      "selectPath": "בחר נתיב לשמירת הסדרה",
+      "addToFavorites": "הוסף למועדפים",
+      "chooseArtwork": "בחר תמונה",
+      "save": "שמור סדרה"
+    },
+    "seriesViewingState": {
+      "viewingState": "סטטוס צפייה",
+      "all": "כל הסדרות שנצפו",
+      "endedWatched": "הסתיים - נצפה",
+      "endedNtC": "הסתיים - צריך להמשיך",
+      "endedWtW": "הסתיים - רוצה לראות",
+      "endedSF": "הסתיים - הפסקתי לעקוב",
+      "runningWatching": "סדרה רצה -צופה",
+      "runningNtC": "סדרה רצה - צריכה להמשיך",
+      "runningWtW": "סדרה רצה - רוצה לצפות",
+      "runningSF": "סדרה רצה - הפסקתי לעקוב"
     },
     "common": {
       "sortBy": "מיין לפי",
@@ -36,6 +54,11 @@
       "table": "טבלה",
       "collections": "אוספים",
       "searching": "מחפש...",
-      "search": "חיפוש"
+      "search": "חיפוש",
+      "cancel": "ביטול",
+      "seasaverch": "שמירה",
+      "yes": "כן",
+      "no": "לא",
+      "select": "בחר"
     }
   }
