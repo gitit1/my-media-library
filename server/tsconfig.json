@@ -13,7 +13,9 @@
     "paths": {
       // src:
       "@entities": ["src/entities"],
-      "@controllers": ["src/controllers"]
+      "@series": ["src/series"],
+      "@thetvdb": ["src/thetvdb"],
+      "@paths": ["src/paths"]
     },
     "incremental": true,
     "skipLibCheck": true,
