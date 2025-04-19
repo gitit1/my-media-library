@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  ManyToOne,
+} from 'typeorm';
 import { Season } from './season.entity';
+import { Path } from './path.entity';
 
 @Entity()
 export class Series {
@@ -20,6 +27,9 @@ export class Series {
 
   @Column({ unique: true, nullable: true })
   folder_name: string;
+
+  @ManyToOne(() => Path, (path) => path.series, { nullable: true })
+  path: Path;
 
   @Column('jsonb')
   seriesName: {
