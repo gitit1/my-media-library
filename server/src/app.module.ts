@@ -1,10 +1,10 @@
-import { ConfigModule } from '@nestjs/config';
 import { Module } from '@nestjs/common';
-import { TheTVDBController } from '@controllers';
-import { Episode, MediaPath, Season, Series, Subtitle } from '@entities';
+import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TheTVDBService } from './services/thetvdb.service';
-import { SeriesService } from './services/series.service';
+import { Series, Season, Episode, Subtitle, MediaPath } from '@entities';
+
+import { TheTVDBModule } from './thetvdb/thetvdb.module';
+import { SeriesModule } from './series/series.module';
 
 @Module({
   imports: [
@@ -19,9 +19,9 @@ import { SeriesService } from './services/series.service';
       entities: [Series, Season, Episode, Subtitle, MediaPath],
       synchronize: true,
     }),
-    TypeOrmModule.forFeature([Series]),
+
+    SeriesModule,
+    TheTVDBModule,
   ],
-  controllers: [TheTVDBController],
-  providers: [TheTVDBService, SeriesService],
 })
 export class AppModule {}

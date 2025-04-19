@@ -6,8 +6,8 @@ import {
   HttpStatus,
   Param,
 } from '@nestjs/common';
-import { TheTVDBService } from '../services/thetvdb.service';
-import { SeriesService } from '../services/series.service';
+import { TheTVDBService } from '../thetvdb/thetvdb.service';
+import { SeriesService } from '../series/series.service';
 
 @Controller('thetvdb')
 export class TheTVDBController {

@@ -1,6 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import axios from 'axios';
-import { SeriesService } from './series.service';
+import { SeriesService } from '../series/series.service';
 
 @Injectable()
 export class TheTVDBService {
