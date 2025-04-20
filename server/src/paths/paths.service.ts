@@ -15,4 +15,10 @@ export class PathsService {
     const newPath = this.pathRepository.create(createPathDto);
     return this.pathRepository.save(newPath);
   }
+
+  async findAll(): Promise<Path[]> {
+    return this.pathRepository.find({
+      order: { name: 'ASC' },
+    });
+  }
 }
