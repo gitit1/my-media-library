@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Series, Season, Episode, Subtitle, Path } from '@entities';
 import { TheTVDBModule } from '@thetvdb';
 import { SeriesModule } from '@series';
+import { PathsModule } from './paths/paths.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { SeriesModule } from '@series';
 
     SeriesModule,
     TheTVDBModule,
+    PathsModule,
   ],
 })
 export class AppModule {}
