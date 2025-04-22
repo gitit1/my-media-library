@@ -1,7 +1,7 @@
-import { Controller, Post, Body, Get } from '@nestjs/common';
-import { PathsService } from './paths.service';
-import { CreatePathDto } from './dto/create-path.dto';
+import { Controller, Post, Body, Get, Patch, Param } from '@nestjs/common';
 import { Path } from '@entities';
+import { PathsService } from './paths.service';
+import { CreatePathDto, UpdatePathDto } from 'src/paths/dto';
 
 @Controller('paths')
 export class PathsController {
@@ -15,5 +15,13 @@ export class PathsController {
   @Get()
   async getAllPaths(): Promise<Path[]> {
     return this.pathsService.findAll();
+  }
+
+  @Patch(':id')
+  async updatePath(
+    @Param('id') id: string,
+    @Body() updatePathDto: UpdatePathDto,
+  ): Promise<Path | null> {
+    return this.pathsService.update(parseInt(id), updatePathDto);
   }
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Path } from '@entities';
-import { CreatePathDto } from './dto/create-path.dto';
+import { CreatePathDto, UpdatePathDto } from 'src/paths/dto';
 
 @Injectable()
 export class PathsService {
@@ -20,5 +20,10 @@ export class PathsService {
     return this.pathRepository.find({
       order: { name: 'ASC' },
     });
+  }
+
+  async update(id: number, updatePathDto: UpdatePathDto): Promise<Path | null> {
+    await this.pathRepository.update(id, updatePathDto);
+    return this.pathRepository.findOneBy({ id });
   }
 }
