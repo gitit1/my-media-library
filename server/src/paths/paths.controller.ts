@@ -1,4 +1,12 @@
-import { Controller, Post, Body, Get, Patch, Param } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Get,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { Path } from '@entities';
 import { PathsService } from './paths.service';
 import { CreatePathDto, UpdatePathDto } from 'src/paths/dto';
@@ -23,5 +31,10 @@ export class PathsController {
     @Body() updatePathDto: UpdatePathDto,
   ): Promise<Path | null> {
     return this.pathsService.update(parseInt(id), updatePathDto);
+  }
+
+  @Delete(':id')
+  async deletePath(@Param('id') id: string): Promise<void> {
+    return this.pathsService.delete(parseInt(id));
   }
 }

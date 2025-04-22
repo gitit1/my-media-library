@@ -26,4 +26,8 @@ export class PathsService {
     await this.pathRepository.update(id, updatePathDto);
     return this.pathRepository.findOneBy({ id });
   }
+
+  async delete(id: number): Promise<void> {
+    await this.pathRepository.delete(id);
+  }
 }
