@@ -20,6 +20,7 @@ export enum BtnType {
 export enum BtnVariant {
 	Default = 'default',
 	Outline = 'outline',
+	Secondary = 'secondary',
 }
 
 // Card:

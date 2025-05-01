@@ -34,11 +34,6 @@ const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
           rounded-md shadow-lg 
           w-full max-w-md 
           p-6 
-          transition-all 
-          duration-200 
-          transform 
-          scale-100 
-          hover:scale-105
         `}
 			>
 				{/* Header with Close Button */}
@@ -72,3 +67,9 @@ const Modal = ({ isOpen, onClose, children, title }: ModalProps) => {
 };
 
 export default Modal;
+
+//   transition-all
+//   duration-200
+//   transform
+//   scale-100
+//   hover:scale-105

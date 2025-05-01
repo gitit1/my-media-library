@@ -44,6 +44,8 @@ const Button = ({
 	const variantStyle =
 		variant === BtnVariant.Outline
 			? 'bg-transparent border border-custom dark:border-custom-dark text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
+			: variant === BtnVariant.Secondary
+			? 'bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200 dark:bg-blue-800 dark:text-white dark:border-blue-600 dark:hover:bg-blue-700'
 			: theme === Theme.Dark
 			? 'bg-gray-700 text-white border border-custom-dark hover:bg-gray-600'
 			: 'bg-gray-200 text-gray-900 border border-custom hover:bg-gray-300';

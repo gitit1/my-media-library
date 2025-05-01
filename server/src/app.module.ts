@@ -5,6 +5,7 @@ import { Series, Season, Episode, Subtitle, Path } from '@entities';
 import { TheTVDBModule } from '@thetvdb';
 import { SeriesModule } from '@series';
 import { PathsModule } from './paths/paths.module';
+import { FilesystemModule } from 'src/filesystem';
 
 @Module({
   imports: [
@@ -19,10 +20,10 @@ import { PathsModule } from './paths/paths.module';
       entities: [Series, Season, Episode, Subtitle, Path],
       synchronize: true,
     }),
-
+    FilesystemModule,
+    PathsModule,
     SeriesModule,
     TheTVDBModule,
-    PathsModule,
   ],
 })
 export class AppModule {}

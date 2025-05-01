@@ -67,7 +67,7 @@ export default function SeriesTable({ data }: SeriesTableProps) {
 									{series.folder_name}
 								</td>
 								<td className="border px-4 py-2">
-									{series.seriesStatus}
+									{series.status}
 								</td>
 								<td className="border px-4 py-2">
 									{series.watchingStatus}

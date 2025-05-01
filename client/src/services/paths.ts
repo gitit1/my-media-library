@@ -6,20 +6,36 @@ const API_BASE_URL =
 
 export const PathsService = {
 	getAll: async (): Promise<Path[]> => {
-		const res = await axios.get(API_BASE_URL);
+		const res = await axios.get(`${API_BASE_URL}/paths`);
 		return res.data;
 	},
 
+	getDrives(): Promise<string[]> {
+		return axios
+			.get(`${API_BASE_URL}/filesystem/drives`)
+			.then((res) => res.data);
+	},
+
+	// Get subfolders inside a given path
+	getFolders(base: string): Promise<string[]> {
+		return axios
+			.get(
+				`${API_BASE_URL}/filesystem/folders?base=${encodeURIComponent(
+					base
+				)}`
+			)
+			.then((res) => res.data);
+	},
 	// these will be used in the next steps:
 	add: async (data: Omit<Path, 'id' | 'createdAt' | 'updatedAt'>) => {
-		return axios.post(API_BASE_URL, data);
+		return axios.post(`${API_BASE_URL}/paths`, data);
 	},
 
 	update: async (id: number, data: Partial<Path>) => {
-		return axios.patch(`${API_BASE_URL}/${id}`, data);
+		return axios.patch(`${API_BASE_URL}/paths/${id}`, data);
 	},
 
 	delete: async (id: number) => {
-		return axios.delete(`${API_BASE_URL}/${id}`);
+		return axios.delete(`${API_BASE_URL}/paths/${id}`);
 	},
 };
