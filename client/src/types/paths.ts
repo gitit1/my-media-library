@@ -5,6 +5,4 @@ export interface Path {
 	description?: string;
 	driveLetter: string;
 	enabled: boolean;
-	createdAt: string;
-	updatedAt: string;
 }

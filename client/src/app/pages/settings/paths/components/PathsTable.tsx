@@ -1,18 +1,19 @@
 'use client';
 
-import { useState } from 'react';
-import { usePaths } from '@hooks';
 import { BtnSize, BtnVariant, Path } from '@types';
-import { Button, Loader } from '@ui';
-import PathModal from '@/app/pages/settings/paths/components/PathModal';
+import { Button } from '@ui';
 
-export default function PathsTable() {
-	const { paths, loading } = usePaths();
+interface PathsTableProps {
+	paths: Path[];
+	onEdit: (path: Path) => void;
+	onDelete: (id: number) => void;
+}
 
-	const [editingPath, setEditingPath] = useState<Path | null>(null);
-
-	if (loading) return <Loader />;
-
+export default function PathsTable({
+	paths,
+	onEdit,
+	onDelete,
+}: PathsTableProps) {
 	return (
 		<table className="w-full mt-6 border border-gray-200 rounded">
 			<thead>
@@ -38,17 +39,25 @@ export default function PathsTable() {
 							<Button
 								size={BtnSize.Small}
 								variant={BtnVariant.Secondary}
-								onClick={() => setEditingPath(path)}
+								onClick={() => onEdit(path)}
 							>
 								✏️ Edit
 							</Button>
-							{editingPath && (
-								<PathModal
-									mode="edit"
-									initialData={editingPath}
-									onClose={() => setEditingPath(null)}
-								/>
-							)}
+							<Button
+								size={BtnSize.Small}
+								variant={BtnVariant.Destructive}
+								onClick={() => {
+									if (
+										confirm(
+											'Are you sure you want to delete this path?'
+										)
+									) {
+										onDelete(path.id);
+									}
+								}}
+							>
+								🗑️
+							</Button>
 						</td>
 					</tr>
 				))}

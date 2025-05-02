@@ -3,19 +3,23 @@
 import { useState } from 'react';
 import { BtnType, BtnVariant, BtnSize, TypographyType, Path } from '@types';
 import { Button, Modal, Typography } from '@ui';
-import { PathsService } from '@services';
+import { usePaths } from '@hooks';
 import FolderPickerModal from './FolderPickerModal';
 
 interface PathModalProps {
 	mode: 'add' | 'edit';
 	initialData?: Path;
 	onClose: () => void;
+	addPath?: (data: Path) => Promise<void>;
+	updatePath?: (id: number, data: Path) => Promise<void>;
 }
 
 export default function PathModal({
 	mode,
 	initialData,
-	onClose = () => {},
+	onClose,
+	addPath,
+	updatePath,
 }: PathModalProps) {
 	const [form, setForm] = useState<Path>({
 		id: initialData?.id ?? 0,
@@ -24,8 +28,6 @@ export default function PathModal({
 		driveLetter: initialData?.driveLetter ?? '',
 		description: initialData?.description ?? '',
 		enabled: initialData?.enabled ?? true,
-		createdAt: initialData?.createdAt ?? '',
-		updatedAt: initialData?.updatedAt ?? '',
 	});
 
 	const [showFolderPicker, setShowFolderPicker] = useState(false);
@@ -34,13 +36,13 @@ export default function PathModal({
 		e.preventDefault();
 
 		try {
-			if (mode === 'edit') {
-				await PathsService.update(form.id, form);
-			} else {
-				await PathsService.add(form);
+			if (mode === 'edit' && updatePath) {
+				await updatePath(form.id, form);
+			} else if (mode === 'add' && addPath) {
+				console.log('1');
+				await addPath(form);
 			}
 			onClose();
-			window.location.reload(); // TODO: replace with shared state update
 		} catch (err) {
 			console.error('Failed to save path:', err);
 		}

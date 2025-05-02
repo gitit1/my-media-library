@@ -21,6 +21,7 @@ export enum BtnVariant {
 	Default = 'default',
 	Outline = 'outline',
 	Secondary = 'secondary',
+	Destructive = 'destructive',
 }
 
 // Card:

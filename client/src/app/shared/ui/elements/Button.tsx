@@ -46,6 +46,8 @@ const Button = ({
 			? 'bg-transparent border border-custom dark:border-custom-dark text-gray-800 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700'
 			: variant === BtnVariant.Secondary
 			? 'bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200 dark:bg-blue-800 dark:text-white dark:border-blue-600 dark:hover:bg-blue-700'
+			: variant === BtnVariant.Destructive
+			? 'bg-red-100 text-red-700 border border-red-300 hover:bg-red-200 dark:bg-red-800 dark:text-white dark:border-red-600 dark:hover:bg-red-700'
 			: theme === Theme.Dark
 			? 'bg-gray-700 text-white border border-custom-dark hover:bg-gray-600'
 			: 'bg-gray-200 text-gray-900 border border-custom hover:bg-gray-300';
