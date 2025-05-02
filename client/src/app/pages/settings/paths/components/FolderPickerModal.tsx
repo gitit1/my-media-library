@@ -62,12 +62,24 @@ export default function FolderPickerModal({
 						<li key={folder}>
 							<button
 								className="text-blue-600 hover:underline text-sm"
-								onClick={() => {
-									setFolderStack((prev) => [
-										...prev,
-										currentPath,
-									]);
-									setCurrentPath(folder);
+								onClick={(e) => {
+									e.preventDefault();
+									e.stopPropagation();
+									if (folder.endsWith(':\\')) {
+										// Only drill into drive, do not select it
+										setFolderStack((prev) => [
+											...prev,
+											currentPath,
+										]);
+										setCurrentPath(folder);
+									} else {
+										// Drill into folder as usual
+										setFolderStack((prev) => [
+											...prev,
+											currentPath,
+										]);
+										setCurrentPath(folder);
+									}
 								}}
 							>
 								📁{' '}
@@ -109,6 +121,7 @@ export default function FolderPickerModal({
 						</Button>
 						<Button
 							size={BtnSize.Small}
+							disabled={!currentPath}
 							onClick={() => {
 								onSelect(currentPath);
 								onClose();

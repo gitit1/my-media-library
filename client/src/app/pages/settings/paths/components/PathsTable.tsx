@@ -1,11 +1,15 @@
 'use client';
 
+import { useState } from 'react';
 import { usePaths } from '@hooks';
-import { Path } from '@types';
-import { Loader } from '@ui';
+import { BtnSize, BtnVariant, Path } from '@types';
+import { Button, Loader } from '@ui';
+import PathModal from '@/app/pages/settings/paths/components/PathModal';
 
 export default function PathsTable() {
 	const { paths, loading } = usePaths();
+
+	const [editingPath, setEditingPath] = useState<Path | null>(null);
 
 	if (loading) return <Loader />;
 
@@ -17,6 +21,7 @@ export default function PathsTable() {
 					<th className="p-2">Path</th>
 					<th className="p-2">Drive</th>
 					<th className="p-2">Enabled</th>
+					<th className="p-2">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -29,6 +34,22 @@ export default function PathsTable() {
 						<td className="p-2">{path.path}</td>
 						<td className="p-2">{path.driveLetter}</td>
 						<td className="p-2">{path.enabled ? '✅' : '❌'}</td>
+						<td className="p-2">
+							<Button
+								size={BtnSize.Small}
+								variant={BtnVariant.Secondary}
+								onClick={() => setEditingPath(path)}
+							>
+								✏️ Edit
+							</Button>
+							{editingPath && (
+								<PathModal
+									mode="edit"
+									initialData={editingPath}
+									onClose={() => setEditingPath(null)}
+								/>
+							)}
+						</td>
 					</tr>
 				))}
 			</tbody>

@@ -1,53 +1,60 @@
 'use client';
 
 import { useState } from 'react';
-import { BtnType, BtnVariant, BtnSize, TypographyType } from '@types';
+import { BtnType, BtnVariant, BtnSize, TypographyType, Path } from '@types';
 import { Button, Modal, Typography } from '@ui';
 import { PathsService } from '@services';
-import FolderPickerModal from '@/app/pages/settings/paths/components/FolderPickerModal';
+import FolderPickerModal from './FolderPickerModal';
 
-export default function AddPathModal() {
-	const [open, setOpen] = useState(false);
-	const [form, setForm] = useState({
-		name: '',
-		path: '',
-		driveLetter: '',
-		description: '',
-		enabled: true,
+interface PathModalProps {
+	mode: 'add' | 'edit';
+	initialData?: Path;
+	onClose: () => void;
+}
+
+export default function PathModal({
+	mode,
+	initialData,
+	onClose = () => {},
+}: PathModalProps) {
+	const [form, setForm] = useState<Path>({
+		id: initialData?.id ?? 0,
+		name: initialData?.name ?? '',
+		path: initialData?.path ?? '',
+		driveLetter: initialData?.driveLetter ?? '',
+		description: initialData?.description ?? '',
+		enabled: initialData?.enabled ?? true,
+		createdAt: initialData?.createdAt ?? '',
+		updatedAt: initialData?.updatedAt ?? '',
 	});
+
 	const [showFolderPicker, setShowFolderPicker] = useState(false);
 
-	const submitForm = async (e: any) => {
+	const handleSubmit = async (e: any) => {
 		e.preventDefault();
+
 		try {
-			await PathsService.add(form);
-			setOpen(false);
-			setForm({
-				name: '',
-				path: '',
-				driveLetter: '',
-				description: '',
-				enabled: true,
-			});
-			window.location.reload();
+			if (mode === 'edit') {
+				await PathsService.update(form.id, form);
+			} else {
+				await PathsService.add(form);
+			}
+			onClose();
+			window.location.reload(); // TODO: replace with shared state update
 		} catch (err) {
-			console.error('Failed to save path', err);
+			console.error('Failed to save path:', err);
 		}
 	};
 
 	return (
 		<>
-			<Button onClick={() => setOpen(true)} className="mb-4">
-				Add New Path
-			</Button>
-
-			<Modal onClose={() => setOpen(false)} isOpen={open}>
+			<Modal isOpen onClose={onClose}>
 				<div className="p-4">
 					<Typography type={TypographyType.H2} className="mb-4">
-						Add New Path
+						{mode === 'edit' ? 'Edit Path' : 'Add New Path'}
 					</Typography>
 
-					<form className="space-y-4" onSubmit={submitForm}>
+					<form className="space-y-4" onSubmit={handleSubmit}>
 						<input
 							type="text"
 							placeholder="Path Name"
@@ -57,12 +64,13 @@ export default function AddPathModal() {
 								setForm({ ...form, name: e.target.value })
 							}
 						/>
+
 						<Button
 							variant={BtnVariant.Secondary}
 							size={BtnSize.Small}
 							onClick={() => {
+								setForm({ ...form, path: '' });
 								setShowFolderPicker(true);
-								setForm({ ...form, path: '' }); // or setCurrentPath(null)
 							}}
 						>
 							Browse Folders
@@ -72,7 +80,7 @@ export default function AddPathModal() {
 							isOpen={showFolderPicker}
 							currentPath={form.path}
 							setCurrentPath={(path) =>
-								setForm({ ...form, path })
+								setForm((prev) => ({ ...prev, path }))
 							}
 							onSelect={(selectedPath) => {
 								const match =
@@ -85,6 +93,7 @@ export default function AddPathModal() {
 							}}
 							onClose={() => setShowFolderPicker(false)}
 						/>
+
 						<input
 							type="text"
 							placeholder="Full Path"
@@ -92,19 +101,15 @@ export default function AddPathModal() {
 							value={form.path}
 							onChange={(e) => {
 								const manualPath = e.target.value;
-								setForm({ ...form, path: manualPath });
-
-								// 🧠 Optional: auto-detect drive letter from manual input
 								const match = manualPath.match(/^([A-Z]):\\/i);
-								if (match) {
-									setForm((prev) => ({
-										...prev,
-										path: manualPath,
-										driveLetter: match[1] + ':',
-									}));
-								}
+								setForm((prev) => ({
+									...prev,
+									path: manualPath,
+									driveLetter: match ? match[1] + ':' : '',
+								}));
 							}}
 						/>
+
 						<input
 							type="text"
 							placeholder="Drive Letter"
@@ -117,9 +122,10 @@ export default function AddPathModal() {
 								})
 							}
 						/>
+
 						<input
 							type="text"
-							placeholder="Description"
+							placeholder="Optional Description"
 							className="w-full border p-2 rounded"
 							value={form.description}
 							onChange={(e) =>
@@ -129,6 +135,7 @@ export default function AddPathModal() {
 								})
 							}
 						/>
+
 						<label className="flex items-center space-x-2">
 							<input
 								type="checkbox"
@@ -143,13 +150,17 @@ export default function AddPathModal() {
 							<span>Enabled</span>
 						</label>
 
-						<Button type={BtnType.Submit} className="w-full">
-							Save Path
+						<Button
+							type={BtnType.Submit}
+							className="w-full"
+							disabled={showFolderPicker}
+						>
+							{mode === 'edit' ? 'Save Changes' : 'Save Path'}
 						</Button>
 					</form>
 
 					<Button
-						onClick={() => setOpen(false)}
+						onClick={onClose}
 						variant={BtnVariant.Outline}
 						className="mt-4"
 					>
