@@ -7,12 +7,14 @@ interface PathsTableProps {
 	paths: Path[];
 	onEdit: (path: Path) => void;
 	onDelete: (id: number) => void;
+	onToggle: (id: number, enabled: boolean) => void;
 }
 
 export default function PathsTable({
 	paths,
 	onEdit,
 	onDelete,
+	onToggle,
 }: PathsTableProps) {
 	return (
 		<table className="w-full mt-6 border border-gray-200 rounded">
@@ -34,7 +36,19 @@ export default function PathsTable({
 						<td className="p-2">{path.name}</td>
 						<td className="p-2">{path.path}</td>
 						<td className="p-2">{path.driveLetter}</td>
-						<td className="p-2">{path.enabled ? '✅' : '❌'}</td>
+						<td className="p-2">
+							<Button
+								size={BtnSize.Small}
+								variant={
+									path.enabled
+										? BtnVariant.Secondary
+										: BtnVariant.Outline
+								}
+								onClick={() => onToggle(path.id, !path.enabled)}
+							>
+								{path.enabled ? '✅ Enabled' : '❌ Disabled'}
+							</Button>
+						</td>
 						<td className="p-2">
 							<Button
 								size={BtnSize.Small}

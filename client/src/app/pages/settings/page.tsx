@@ -8,7 +8,14 @@ import PathsTable from './paths/components/PathsTable';
 import PathModal from './paths/components/PathModal';
 
 export default function SettingsPage() {
-	const { paths, loading, addPath, updatePath, deletePath } = usePaths();
+	const {
+		paths,
+		loading,
+		addPath,
+		updatePath,
+		deletePath,
+		togglePathStatus,
+	} = usePaths();
 
 	const [editingPath, setEditingPath] = useState<Path | null>(null);
 	const [addingPath, setAddingPath] = useState(false);
@@ -32,6 +39,7 @@ export default function SettingsPage() {
 						paths={paths}
 						onEdit={setEditingPath}
 						onDelete={deletePath}
+						onToggle={togglePathStatus}
 					/>
 				)}
 				{addingPath && (

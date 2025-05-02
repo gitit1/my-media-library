@@ -50,12 +50,23 @@ export function usePaths() {
 		}
 	};
 
+	const togglePathStatus = async (id: number, enabled: boolean) => {
+		try {
+			await PathsService.toggleEnabled(id, enabled);
+			setPaths((prev) =>
+				prev.map((p) => (p.id === id ? { ...p, enabled } : p))
+			);
+		} catch (err) {
+			console.error('Failed to toggle path status:', err);
+		}
+	};
+
 	return {
 		paths,
 		loading,
 		addPath,
 		updatePath,
 		deletePath,
-		refresh: fetchPaths,
+		togglePathStatus,
 	};
 }
